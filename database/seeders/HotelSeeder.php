@@ -194,7 +194,7 @@ class HotelSeeder extends Seeder
                 'reviews' => [
                     ['name' => 'Dennis Schmidt', 'rating' => 8.4, 'comment' => 'Super fast check-in, spotless clean, and perfect for business travelers.'],
                 ],
-            ]
+            ],
         ];
 
         foreach ($hotelsData as $hData) {
@@ -260,7 +260,7 @@ class HotelSeeder extends Seeder
      */
     private function ensureTablesExist(): void
     {
-        if (!Schema::hasTable('hotels')) {
+        if (! Schema::hasTable('hotels')) {
             $sqlFile = base_path('createscript.sql');
             if (file_exists($sqlFile)) {
                 DB::unprepared(file_get_contents($sqlFile));

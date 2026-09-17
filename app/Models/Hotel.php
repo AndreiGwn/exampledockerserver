@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Log;
  *
  * Strict wrapper model for Hotel Stored Procedures.
  * Adheres strictly to Rules & Regulations (Rule 1, Rule 3, Rule 4, Rule 6).
- *
- * @package App\Models
  */
 class Hotel extends Model
 {
@@ -55,7 +53,7 @@ class Hotel extends Model
 
             return $results ?? [];
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_ReadAll: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_ReadAll: '.$e->getMessage(), [
                 'exception' => $e,
             ]);
 
@@ -67,7 +65,7 @@ class Hotel extends Model
     /**
      * Retrieve a specific hotel by ID via Stored Procedure SP_Hotel_Read.
      *
-     * @param int $id The unique identifier of the hotel.
+     * @param  int  $id  The unique identifier of the hotel.
      * @return object Returns the hotel object, or an empty fallback object on failure (never null).
      */
     public function findById(int $id): object
@@ -76,7 +74,7 @@ class Hotel extends Model
             $results = DB::select('CALL SP_Hotel_Read(?)', [$id]);
             Log::info('SP_Hotel_Read executed successfully.', ['hotel_id' => $id]);
 
-            if (!empty($results) && isset($results[0])) {
+            if (! empty($results) && isset($results[0])) {
                 return $results[0];
             }
 
@@ -99,7 +97,7 @@ class Hotel extends Model
                 'starting_price' => 0.00,
             ];
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_Read: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_Read: '.$e->getMessage(), [
                 'hotel_id' => $id,
                 'exception' => $e,
             ]);
@@ -127,7 +125,7 @@ class Hotel extends Model
     /**
      * Retrieve all hotels belonging to a specific owner via SP_Hotel_ReadByOwner.
      *
-     * @param int $userId The ID of the Eigenaar owner.
+     * @param  int  $userId  The ID of the Eigenaar owner.
      * @return array<int, object> List of hotels owned by user or empty array fallback.
      */
     public function getByOwnerId(int $userId): array
@@ -138,7 +136,7 @@ class Hotel extends Model
 
             return $results ?? [];
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_ReadByOwner: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_ReadByOwner: '.$e->getMessage(), [
                 'user_id' => $userId,
                 'exception' => $e,
             ]);
@@ -150,7 +148,7 @@ class Hotel extends Model
     /**
      * Create a new hotel property via Stored Procedure SP_Hotel_Create.
      *
-     * @param array<string, mixed> $data Associative array of hotel fields.
+     * @param  array<string, mixed>  $data  Associative array of hotel fields.
      * @return int The ID of the newly created hotel, or 0 on failure.
      */
     public function createHotel(array $data): int
@@ -177,7 +175,7 @@ class Hotel extends Model
 
             return $insertedId > 0 ? $insertedId : 0;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_Create: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_Create: '.$e->getMessage(), [
                 'data' => $data,
                 'exception' => $e,
             ]);
@@ -189,9 +187,9 @@ class Hotel extends Model
     /**
      * Update an existing hotel property via Stored Procedure SP_Hotel_Update.
      *
-     * @param int $id The ID of the hotel to update.
-     * @param array<string, mixed> $data Associative array of update fields.
-     * @param int|null $userId Optional owner ID verification.
+     * @param  int  $id  The ID of the hotel to update.
+     * @param  array<string, mixed>  $data  Associative array of update fields.
+     * @param  int|null  $userId  Optional owner ID verification.
      * @return bool True on success, false on failure.
      */
     public function updateHotel(int $id, array $data, ?int $userId = null): bool
@@ -216,7 +214,7 @@ class Hotel extends Model
 
             return true;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_Update: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_Update: '.$e->getMessage(), [
                 'hotel_id' => $id,
                 'exception' => $e,
             ]);
@@ -228,8 +226,8 @@ class Hotel extends Model
     /**
      * Delete a hotel property via Stored Procedure SP_Hotel_Delete.
      *
-     * @param int $id The hotel ID to delete.
-     * @param int|null $userId Optional owner ID constraint.
+     * @param  int  $id  The hotel ID to delete.
+     * @param  int|null  $userId  Optional owner ID constraint.
      * @return bool True on success, false on failure.
      */
     public function deleteHotel(int $id, ?int $userId = null): bool
@@ -240,7 +238,7 @@ class Hotel extends Model
 
             return true;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_Delete: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_Delete: '.$e->getMessage(), [
                 'hotel_id' => $id,
                 'exception' => $e,
             ]);
@@ -252,7 +250,7 @@ class Hotel extends Model
     /**
      * Perform Trivago-style search using Stored Procedure SP_Hotel_Search.
      *
-     * @param array<string, mixed> $filters Search criteria (query, city, min_price, max_price, min_star, capacity, sort_by).
+     * @param  array<string, mixed>  $filters  Search criteria (query, city, min_price, max_price, min_star, capacity, sort_by).
      * @return array<int, object> Matching hotel results or empty array fallback.
      */
     public function search(array $filters): array
@@ -283,7 +281,7 @@ class Hotel extends Model
 
             return $results ?? [];
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Hotel_Search: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Hotel_Search: '.$e->getMessage(), [
                 'filters' => $filters,
                 'exception' => $e,
             ]);
@@ -305,7 +303,7 @@ class Hotel extends Model
 
             return $cities ?? [];
         } catch (\Throwable $e) {
-            Log::error('Failed retrieving distinct cities: ' . $e->getMessage());
+            Log::error('Failed retrieving distinct cities: '.$e->getMessage());
 
             return ['Amsterdam', 'Rotterdam', 'Utrecht', 'The Hague', 'Maastricht', 'Eindhoven'];
         }
