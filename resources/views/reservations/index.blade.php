@@ -42,7 +42,7 @@
                 <!-- Brand Logo -->
                 <a href="{{ route('hotels.index') }}" class="flex items-center gap-3.5 group">
                     <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
-                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-xl">
+                        <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-xl">
                     </div>
                     <div class="flex flex-col justify-center">
                         <span class="text-xl sm:text-2xl font-bold tracking-tight font-serif text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">

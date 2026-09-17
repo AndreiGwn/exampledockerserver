@@ -78,8 +78,8 @@ function gshotelMusicPlayer() {
         synthInterval: null,
 
         // Purrple Cat - Equinox (CC BY-SA 3.0)
-        primaryTrackUrl: '/audio/purrple-cat-equinox.mp3',
-        fallbackTrackUrl: '/audio/meditation_ambient.mp3',
+        primaryTrackUrl: '{{ asset('audio/purrple-cat-equinox.mp3') }}',
+        fallbackTrackUrl: '{{ asset('audio/meditation_ambient.mp3') }}',
 
         initAudio() {
             const savedMute = localStorage.getItem('gshotel_music_muted');

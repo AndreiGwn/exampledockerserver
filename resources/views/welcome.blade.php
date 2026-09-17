@@ -63,7 +63,7 @@
             
             <div class="inline-block group">
                 <div class="w-44 h-44 sm:w-56 sm:h-56 mx-auto rounded-3xl overflow-hidden gold-glow border-2 border-amber-500/50 shadow-2xl transition-all duration-500 group-hover:scale-105 p-1 bg-slate-900/60 backdrop-blur-sm">
-                    <img src="/images/gs_logo.png" alt="Gogan Space Luxury Logo" class="w-full h-full object-contain rounded-2xl">
+                    <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space Luxury Logo" class="w-full h-full object-contain rounded-2xl">
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                 <!-- Brand Logo (Clicking returns to explore or welcome) -->
                 <div class="flex items-center gap-3.5 cursor-pointer group" @click="switchTab('explore')">
                     <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
-                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-xl">
+                        <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-xl">
                     </div>
                     <div class="flex flex-col justify-center">
                         <span class="text-xl sm:text-2xl font-bold tracking-tight font-serif text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">
@@ -638,7 +638,7 @@
         <div class="max-w-7xl mx-auto px-4 space-y-3">
             <div class="flex items-center justify-center gap-2.5">
                 <div class="w-7 h-7 rounded-lg overflow-hidden border border-amber-500/30 inline-block align-middle">
-                    <img src="/images/gs_logo.png" alt="GS Logo" class="w-full h-full object-cover">
+                    <img src="{{ asset('images/gs_logo.png') }}" alt="GS Logo" class="w-full h-full object-cover">
                 </div>
                 <span class="text-slate-900 dark:text-white font-bold text-base">Gogan Space (GSHotel) Netherlands</span>
             </div>
@@ -783,7 +783,7 @@
             cancelReservation(code) {
                 if (!confirm('Are you sure you want to cancel reservation ' + code + '?')) return;
 
-                fetch('/reserved/' + encodeURIComponent(code), {
+                fetch('{{ url('/reserved') }}/' + encodeURIComponent(code), {
                     method: 'DELETE',
                     headers: {
                         'Accept': 'application/json',
