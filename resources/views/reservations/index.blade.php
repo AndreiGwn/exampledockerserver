@@ -66,6 +66,11 @@
                             </span>
                         @endif
                     </a>
+
+                    <!-- Minimal Sound Controller in Header (Top-Right) -->
+                    <div class="ml-1 sm:ml-2">
+                        <x-music-player />
+                    </div>
                 </nav>
             </div>
         </div>
@@ -292,9 +297,6 @@
             <p class="text-[11px] text-slate-400">© {{ date('Y') }} GSHotel Netherlands. All reservations handled with utmost privacy and bespoke care.</p>
         </div>
     </footer>
-
-    <!-- Floating Background Music Player with Bottom-Right Mute Button -->
-    <x-music-player />
 
 </body>
 </html>

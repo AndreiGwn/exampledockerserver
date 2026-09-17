@@ -60,6 +60,11 @@
                         </svg>
                         <span>Reserved</span>
                     </a>
+
+                    <!-- Minimal Sound Controller in Header (Top-Right) -->
+                    <div class="ml-1 sm:ml-2">
+                        <x-music-player />
+                    </div>
                 </nav>
             </div>
         </div>
@@ -254,8 +259,6 @@
     <!-- Reservation Modal Component -->
     <x-reservation-modal />
 
-    <!-- Music Player Component with Bottom-Right Mute Button -->
-    <x-music-player />
 
 </body>
 </html>

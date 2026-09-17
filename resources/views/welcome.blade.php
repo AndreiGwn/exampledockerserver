@@ -139,6 +139,11 @@
                         <span>Reserved</span>
                         <span x-show="reservations.length > 0" class="w-5 h-5 rounded-full bg-amber-500 text-white text-[11px] font-black flex items-center justify-center shadow-inner" x-text="reservations.length"></span>
                     </button>
+
+                    <!-- Minimal Sound Controller in Header (Top-Right) -->
+                    <div class="ml-1 sm:ml-2">
+                        <x-music-player />
+                    </div>
                 </nav>
             </div>
         </div>
@@ -620,8 +625,6 @@
     <!-- Luxury Reservation Modal Component -->
     <x-reservation-modal />
 
-    <!-- Continuous Floating Background Music Player on Bottom-Right -->
-    <x-music-player />
 
     <!-- ========================================================================= -->
     <!-- 7. ALPINE.JS APP LOGIC FOR SEAMLESS SPA NAVIGATION & DATA SYNC            -->
@@ -666,10 +669,7 @@
                 this.activeTab = 'explore';
 
                 // Automatically trigger ambient music playback on user's button press
-                const playBtn = document.querySelector('button[title*="Ambient Music"]');
-                if (playBtn) {
-                    playBtn.click();
-                }
+                window.dispatchEvent(new CustomEvent('start-gshotel-music'));
             },
 
             switchTab(tab) {
