@@ -3,10 +3,10 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
                 <h2 class="font-black text-2xl text-slate-800 dark:text-slate-100 leading-tight">
-                    {{ __('Eigenaar Dashboard') }}
+                    {{ __('Dashboard') }}
                 </h2>
                 <p class="text-xs font-semibold text-slate-500 mt-1">
-                    Welkom terug, {{ Auth::user()->name }} ({{ Auth::user()->company_name ?: 'Hotel Eigenaar' }})
+                    Welkom terug, {{ Auth::user()->name }} ({{ Auth::user()->company_name ?: 'Hotel Owner' }})
                 </p>
             </div>
             <div class="flex items-center gap-3">
@@ -65,7 +65,7 @@
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Status</span>
                         <div class="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1.5">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Actief Eigenaar</span>
+                            <span>Active Owner</span>
                         </div>
                     </div>
                     <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-400 flex items-center justify-center">

@@ -21,10 +21,10 @@
                         {{ __('Publieke Zoeksite') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Eigenaar Dashboard') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('owner.hotels.index')" :active="request()->routeIs('owner.hotels.*') || request()->routeIs('owner.rooms.*')">
-                        {{ __('Mijn Hotels & Kamers') }}
+                        {{ __('My Hotels & Rooms') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-bold rounded-xl text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800 hover:text-slate-800 dark:hover:text-white focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }} (Eigenaar)</div>
+                            <div>{{ Auth::user()->name }} (Owner)</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

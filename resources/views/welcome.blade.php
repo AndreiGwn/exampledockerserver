@@ -52,7 +52,7 @@
                             <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                             </svg>
-                            <span>Eigenaar Dashboard</span>
+                            <span>Owner Dashboard</span>
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
@@ -62,13 +62,13 @@
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-white px-3 py-2 transition">
-                            Inloggen Eigenaar
+                            Login
                         </a>
                         <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md shadow-indigo-500/20 transition hover:scale-[1.02] active:scale-[0.98]">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                             </svg>
-                            <span>Registreer als Eigenaar</span>
+                            <span>Register</span>
                         </a>
                     @endauth
                 </nav>
@@ -336,8 +336,8 @@
 
                 <div class="flex flex-wrap items-center gap-6 text-slate-400 font-medium">
                     <a href="{{ route('hotels.index') }}" class="hover:text-white transition">Hotels Zoeken</a>
-                    <a href="{{ route('register') }}" class="hover:text-white transition">Hotel Eigenaar Worden</a>
-                    <a href="{{ route('login') }}" class="hover:text-white transition">Eigenaar Inloggen</a>
+                    <a href="{{ route('register') }}" class="hover:text-white transition">Register</a>
+                    <a href="{{ route('login') }}" class="hover:text-white transition">Login</a>
                 </div>
 
                 <div class="text-slate-500 text-center md:text-right text-[11px]">

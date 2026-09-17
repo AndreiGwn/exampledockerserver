@@ -6,13 +6,13 @@ use Tests\TestCase;
 
 class OwnerRegistrationTest extends TestCase
 {
-    public function test_registration_screen_shows_eigenaar_branding(): void
+    public function test_registration_screen_shows_owner_branding(): void
     {
         $response = $this->get('/register');
 
         $response->assertStatus(200);
-        $response->assertSee('Registreer als Eigenaar');
-        $response->assertSee('Bedrijfsnaam');
+        $response->assertSee('Register');
+        $response->assertSee('Company / Hotel Name');
     }
 
     public function test_new_eigenaar_can_register(): void

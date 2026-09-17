@@ -170,9 +170,9 @@
             <div class="space-y-6">
                 <!-- Owner Profile Box -->
                 <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm sticky top-28">
-                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-2">Geverifieerde Eigenaar</span>
-                    <h3 class="text-lg font-black text-slate-900 dark:text-white">{{ $hotel->owner_company ?: ($hotel->owner_name ?: 'Hotel Beheer') }}</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-6">Contactpersoon: {{ $hotel->owner_name ?: 'Eigenaar' }}</p>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-2">Verified Hotel Owner</span>
+                    <h3 class="text-lg font-black text-slate-900 dark:text-white">{{ $hotel->owner_company ?: ($hotel->owner_name ?: 'Hotel Management') }}</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-6">Contact Person: {{ $hotel->owner_name ?: 'Owner' }}</p>
 
                     <div class="space-y-3.5 text-xs text-slate-700 dark:text-slate-300 mb-6">
                         @if(!empty($hotel->phone))
