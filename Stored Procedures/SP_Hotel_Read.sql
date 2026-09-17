@@ -1,0 +1,55 @@
+-- =============================================================================
+-- Stored Procedure: SP_Hotel_Read
+-- Rule 1 & Rule 2: Transaction safe with SQLEXCEPTION handler
+-- =============================================================================
+
+DROP PROCEDURE IF EXISTS SP_Hotel_Read;
+
+DELIMITER //
+
+CREATE PROCEDURE SP_Hotel_Read(
+    IN p_id BIGINT UNSIGNED
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    SELECT 
+        h.id,
+        h.user_id,
+        h.name,
+        h.description,
+        h.city,
+        h.address,
+        h.star_rating,
+        h.price_per_night,
+        h.image_url,
+        h.phone,
+        h.email,
+        h.is_featured,
+        h.created_at,
+        h.updated_at,
+        u.name AS owner_name,
+        u.email AS owner_email,
+        u.phone AS owner_phone,
+        u.company_name AS owner_company,
+        COALESCE(AVG(r.rating), 8.5) AS average_rating,
+        COUNT(DISTINCT r.id) AS reviews_count,
+        COUNT(DISTINCT rm.id) AS rooms_count,
+        COALESCE(MIN(rm.price_per_night), h.price_per_night) AS starting_price
+    FROM hotels h
+    LEFT JOIN users u ON h.user_id = u.id
+    LEFT JOIN reviews r ON h.id = r.hotel_id
+    LEFT JOIN rooms rm ON h.id = rm.hotel_id AND rm.is_available = 1
+    WHERE h.id = p_id
+    GROUP BY h.id, u.name, u.email, u.phone, u.company_name;
+
+    COMMIT;
+END //
+
+DELIMITER ;
