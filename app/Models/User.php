@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -10,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'role', 'phone', 'company_name'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -28,5 +27,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Determine if the user is an Eigenaar (Hotel Owner).
+     *
+     * @return bool
+     */
+    public function isEigenaar(): bool
+    {
+        return ($this->role ?? 'eigenaar') === 'eigenaar';
+    }
+
+    /**
+     * Get all hotels owned by this Eigenaar.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hotels()
+    {
+        return $this->hasMany(Hotel::class, 'user_id');
     }
 }
