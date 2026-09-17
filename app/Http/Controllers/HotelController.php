@@ -68,6 +68,11 @@ class HotelController extends Controller
     public function show(int $id): View
     {
         $hotel = $this->hotelModel->findById($id);
+
+        if ((int) ($hotel->id ?? 0) === 0) {
+            abort(404, 'Hotel niet gevonden.');
+        }
+
         $rooms = $this->roomModel->getByHotelId($id);
 
         return view('hotels.show', [
