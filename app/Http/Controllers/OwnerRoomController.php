@@ -14,8 +14,6 @@ use Illuminate\View\View;
  *
  * Handles Eigenaar (Hotel Owner) CRUD operations for hotel rooms.
  * Strictly adheres to Rules & Regulations (Rule 5: IoC, Rule 6: DocBlocks, Rule 7: User Feedback).
- *
- * @package App\Http\Controllers
  */
 class OwnerRoomController extends Controller
 {
@@ -23,8 +21,8 @@ class OwnerRoomController extends Controller
      * OwnerRoomController constructor.
      * Injects Room and Hotel models (Rule 5: Controller IoC).
      *
-     * @param Room $roomModel Initialized Room model wrapper.
-     * @param Hotel $hotelModel Initialized Hotel model wrapper.
+     * @param  Room  $roomModel  Initialized Room model wrapper.
+     * @param  Hotel  $hotelModel  Initialized Hotel model wrapper.
      */
     public function __construct(
         protected Room $roomModel,
@@ -34,14 +32,14 @@ class OwnerRoomController extends Controller
     /**
      * Display a listing of rooms for a specific hotel.
      *
-     * @param int $hotelId The unique identifier of the hotel.
+     * @param  int  $hotelId  The unique identifier of the hotel.
      * @return View|RedirectResponse The room listing view or error redirect.
      */
     public function index(int $hotelId): View|RedirectResponse
     {
         $hotel = $this->hotelModel->findById($hotelId);
 
-        if (!$hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
+        if (! $hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
             session()->flash('error', 'Hotel niet gevonden of u heeft geen toegang.');
 
             return redirect()->route('owner.hotels.index');
@@ -58,7 +56,7 @@ class OwnerRoomController extends Controller
     /**
      * Show the form for creating a new room for a hotel.
      *
-     * @param int $hotelId The hotel ID.
+     * @param  int  $hotelId  The hotel ID.
      * @return View The create room form.
      */
     public function create(int $hotelId): View
@@ -73,15 +71,15 @@ class OwnerRoomController extends Controller
     /**
      * Store a newly created room in the database via Stored Procedure.
      *
-     * @param Request $request Incoming HTTP request.
-     * @param int $hotelId The hotel ID.
+     * @param  Request  $request  Incoming HTTP request.
+     * @param  int  $hotelId  The hotel ID.
      * @return RedirectResponse Redirect with feedback.
      */
     public function store(Request $request, int $hotelId): RedirectResponse
     {
         $hotel = $this->hotelModel->findById($hotelId);
 
-        if (!$hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
+        if (! $hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
             session()->flash('error', 'Geen toestemming om kamers toe te voegen aan dit hotel.');
 
             return redirect()->route('owner.hotels.index');
@@ -117,15 +115,14 @@ class OwnerRoomController extends Controller
     /**
      * Show the form for editing an existing room.
      *
-     * @param int $hotelId The hotel ID.
-     * @param int $roomId The room ID.
-     * @return View|RedirectResponse
+     * @param  int  $hotelId  The hotel ID.
+     * @param  int  $roomId  The room ID.
      */
     public function edit(int $hotelId, int $roomId): View|RedirectResponse
     {
         $hotel = $this->hotelModel->findById($hotelId);
 
-        if (!$hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
+        if (! $hotel || (int) ($hotel->id ?? 0) === 0 || (int) $hotel->user_id !== (int) Auth::id()) {
             session()->flash('error', 'Geen toegang tot dit hotel.');
 
             return redirect()->route('owner.hotels.index');
@@ -134,7 +131,7 @@ class OwnerRoomController extends Controller
         $rooms = $this->roomModel->getByHotelId($hotelId);
         $room = collect($rooms)->firstWhere('id', $roomId);
 
-        if (!$room) {
+        if (! $room) {
             session()->flash('error', 'Kamer niet gevonden.');
 
             return redirect()->route('owner.rooms.index', $hotelId);
@@ -148,11 +145,6 @@ class OwnerRoomController extends Controller
 
     /**
      * Update an existing room via Stored Procedure.
-     *
-     * @param Request $request
-     * @param int $hotelId
-     * @param int $roomId
-     * @return RedirectResponse
      */
     public function update(Request $request, int $hotelId, int $roomId): RedirectResponse
     {
@@ -184,10 +176,6 @@ class OwnerRoomController extends Controller
 
     /**
      * Remove the specified room via Stored Procedure.
-     *
-     * @param int $hotelId
-     * @param int $roomId
-     * @return RedirectResponse
      */
     public function destroy(int $hotelId, int $roomId): RedirectResponse
     {

@@ -17,15 +17,11 @@ use Illuminate\View\View;
  * Class RegisteredUserController
  *
  * Handles registration of new Eigenaar (Hotel Owner) accounts.
- *
- * @package App\Http\Controllers\Auth
  */
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view for Eigenaars.
-     *
-     * @return View
      */
     public function create(): View
     {
@@ -35,8 +31,6 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming Eigenaar registration request.
      *
-     * @param Request $request
-     * @return RedirectResponse
      * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse

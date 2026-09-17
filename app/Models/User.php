@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -31,8 +32,6 @@ class User extends Authenticatable
 
     /**
      * Determine if the user is an Eigenaar (Hotel Owner).
-     *
-     * @return bool
      */
     public function isEigenaar(): bool
     {
@@ -42,7 +41,7 @@ class User extends Authenticatable
     /**
      * Get all hotels owned by this Eigenaar.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function hotels()
     {

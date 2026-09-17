@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Log;
  *
  * Strict wrapper model for Room Stored Procedures.
  * Adheres strictly to Rules & Regulations (Rule 1, Rule 3, Rule 4, Rule 6).
- *
- * @package App\Models
  */
 class Room extends Model
 {
@@ -43,7 +41,7 @@ class Room extends Model
     /**
      * Retrieve all rooms for a specific hotel via SP_Room_ReadByHotel.
      *
-     * @param int $hotelId The ID of the hotel.
+     * @param  int  $hotelId  The ID of the hotel.
      * @return array<int, object> List of rooms or empty array fallback on failure.
      */
     public function getByHotelId(int $hotelId): array
@@ -57,7 +55,7 @@ class Room extends Model
 
             return $results ?? [];
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Room_ReadByHotel: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Room_ReadByHotel: '.$e->getMessage(), [
                 'hotel_id' => $hotelId,
                 'exception' => $e,
             ]);
@@ -69,7 +67,7 @@ class Room extends Model
     /**
      * Create a new room for a hotel via Stored Procedure SP_Room_Create.
      *
-     * @param array<string, mixed> $data Associative array of room fields.
+     * @param  array<string, mixed>  $data  Associative array of room fields.
      * @return int The ID of the newly created room, or 0 on failure.
      */
     public function createRoom(array $data): int
@@ -94,7 +92,7 @@ class Room extends Model
 
             return $insertedId > 0 ? $insertedId : 0;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Room_Create: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Room_Create: '.$e->getMessage(), [
                 'data' => $data,
                 'exception' => $e,
             ]);
@@ -106,8 +104,8 @@ class Room extends Model
     /**
      * Update an existing room via Stored Procedure SP_Room_Update.
      *
-     * @param int $id The ID of the room to update.
-     * @param array<string, mixed> $data Associative array of room fields to update.
+     * @param  int  $id  The ID of the room to update.
+     * @param  array<string, mixed>  $data  Associative array of room fields to update.
      * @return bool True on success, false on failure.
      */
     public function updateRoom(int $id, array $data): bool
@@ -129,7 +127,7 @@ class Room extends Model
 
             return true;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Room_Update: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Room_Update: '.$e->getMessage(), [
                 'room_id' => $id,
                 'exception' => $e,
             ]);
@@ -141,7 +139,7 @@ class Room extends Model
     /**
      * Delete a room via Stored Procedure SP_Room_Delete.
      *
-     * @param int $id The room ID to delete.
+     * @param  int  $id  The room ID to delete.
      * @return bool True on success, false on failure.
      */
     public function deleteRoom(int $id): bool
@@ -152,7 +150,7 @@ class Room extends Model
 
             return true;
         } catch (\Throwable $e) {
-            Log::error('Failed executing SP_Room_Delete: ' . $e->getMessage(), [
+            Log::error('Failed executing SP_Room_Delete: '.$e->getMessage(), [
                 'room_id' => $id,
                 'exception' => $e,
             ]);

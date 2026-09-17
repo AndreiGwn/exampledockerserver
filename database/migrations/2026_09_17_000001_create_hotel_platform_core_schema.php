@@ -21,14 +21,14 @@ return new class extends Migration
         // 2. Load and register all Stored Procedures from Stored Procedures directory
         $spDirectory = base_path('Stored Procedures');
         if (is_dir($spDirectory)) {
-            $files = glob($spDirectory . '/*.sql');
+            $files = glob($spDirectory.'/*.sql');
             foreach ($files as $file) {
                 $spSql = file_get_contents($file);
                 // Remove DELIMITER keywords for PDO execution if needed
                 $cleanedSql = preg_replace('/DELIMITER\s+\/\/|DELIMITER\s+;/i', '', $spSql);
                 try {
                     DB::unprepared($cleanedSql);
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     // Log or handle gracefully
                 }
             }
