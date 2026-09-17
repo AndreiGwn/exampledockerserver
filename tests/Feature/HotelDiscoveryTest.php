@@ -37,7 +37,8 @@ class HotelDiscoveryTest extends TestCase
         $response = $this->get('/?stars=5');
 
         $response->assertStatus(200);
-        $response->assertSee('5 ★ Luxury');
+        $response->assertSee('5-Star Luxury');
+        $response->assertSee('Conservatorium Hotel');
     }
 
     public function test_hotel_detail_page_renders_sanctuary_info(): void

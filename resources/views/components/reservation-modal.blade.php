@@ -56,7 +56,7 @@
                     <img :src="hotelData.image_url" :alt="hotelData.name" class="w-16 h-16 rounded-xl object-cover shadow-sm">
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-1.5 mb-1">
-                            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-300" x-text="hotelData.star_rating + ' ★ Luxury'"></span>
+                            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-300" x-text="(hotelData.star_rating || 5) + ' ★ Luxury'"></span>
                             <span class="text-xs text-slate-400" x-text="hotelData.city"></span>
                         </div>
                         <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate" x-text="hotelData.name"></h4>
@@ -175,11 +175,12 @@
                     </div>
                 </div>
 
-                <!-- Navigation Actions -->
+                <!-- Navigation Actions (SPA Tab Switch to preserve continuous audio) -->
                 <div class="space-y-3 pt-2">
-                    <a href="{{ route('reservations.index') }}" class="block w-full py-3.5 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-amber-600 dark:hover:bg-amber-700 font-black text-xs uppercase tracking-wider shadow-lg transition text-center">
-                        Go to "Reserved" Tab to View Your Stay →
-                    </a>
+                    <button type="button" @click="goToReserved()" class="w-full py-3.5 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-amber-600 dark:hover:bg-amber-700 font-black text-xs uppercase tracking-wider shadow-lg transition text-center flex items-center justify-center gap-2">
+                        <span>Go to "Reserved" Tab to View Your Stay</span>
+                        <span>→</span>
+                    </button>
                     <button type="button" @click="closeModal()" class="block w-full text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 py-2">
                         Close & Continue Exploring
                     </button>
@@ -219,7 +220,6 @@ function gshotelReserveModal() {
         },
 
         init() {
-            // Set default dates: tomorrow and +3 days
             const today = new Date();
             const tomorrow = new Date(today);
             tomorrow.setDate(tomorrow.getDate() + 1);
@@ -239,9 +239,17 @@ function gshotelReserveModal() {
 
         closeModal() {
             this.isOpen = false;
-            if (this.isSuccess) {
-                // Refresh or redirect if needed
-                window.location.reload();
+        },
+
+        goToReserved() {
+            this.isOpen = false;
+            // Access root Alpine app instance to switch tab seamlessly without page reload
+            const root = document.querySelector('[x-data*="gshotelApp"]');
+            if (root && root._x_dataStack) {
+                const app = root._x_dataStack[0];
+                if (app && app.switchTab) {
+                    app.switchTab('reserved');
+                }
             }
         },
 
@@ -275,6 +283,8 @@ function gshotelReserveModal() {
                 if (data.success) {
                     this.isSuccess = true;
                     this.confirmedCode = data.reservation_code;
+                    // Dispatch event with created reservation for instant Alpine sync
+                    window.dispatchEvent(new CustomEvent('reservation-created', { detail: data.reservation }));
                 } else {
                     this.errorMessage = data.message || 'Error securing your reservation. Please check all fields.';
                 }

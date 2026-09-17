@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -37,8 +38,17 @@ class ReservationController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('reservations.index', [
+        $hotels = Hotel::with(['rooms', 'amenities'])->get();
+        $cities = Hotel::distinct()->pluck('city')->toArray();
+
+        return view('welcome', [
+            'hotels' => $hotels,
+            'cities' => $cities,
+            'filters' => [],
+            'totalResults' => $hotels->count(),
             'reservations' => $reservations,
+            'initialTab' => 'reserved',
+            'initialHotelId' => null,
         ]);
     }
 
@@ -89,7 +99,7 @@ class ReservationController extends Controller
                 'success' => true,
                 'message' => 'Thank you for reserving with GSHotel! Your reservation has been confirmed.',
                 'reservation_code' => $code,
-                'reservation' => $reservation->load(['hotel', 'room']),
+                'reservation' => $reservation->load(['hotel.amenities', 'room']),
                 'redirect_url' => route('reservations.index'),
             ]);
         }
@@ -102,20 +112,31 @@ class ReservationController extends Controller
 
     /**
      * Look up past reservations by reservation code or email.
+     *
+     * @return JsonResponse|RedirectResponse
      */
-    public function lookup(Request $request): RedirectResponse
+    public function lookup(Request $request)
     {
         $query = trim($request->input('lookup_query', ''));
 
         if (empty($query)) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => 'Please enter a reservation code or email address.']);
+            }
+
             return redirect()->route('reservations.index')->with('error', 'Please enter a reservation code or email address.');
         }
 
-        $found = Reservation::where('reservation_code', strtoupper($query))
+        $found = Reservation::with(['hotel.amenities', 'room'])
+            ->where('reservation_code', strtoupper($query))
             ->orWhere('guest_email', $query)
             ->get();
 
         if ($found->isEmpty()) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => "No reservations found matching '{$query}'."]);
+            }
+
             return redirect()->route('reservations.index')->with('error', "No reservations found matching '{$query}'.");
         }
 
@@ -126,20 +147,44 @@ class ReservationController extends Controller
             }
         }
 
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Found {$found->count()} reservation(s).",
+                'reservations' => $found,
+            ]);
+        }
+
         return redirect()->route('reservations.index')->with('success', "Found {$found->count()} reservation(s).");
     }
 
     /**
      * Cancel an existing reservation.
+     *
+     * @return JsonResponse|RedirectResponse
      */
-    public function destroy(string $code): RedirectResponse
+    public function destroy(Request $request, string $code)
     {
         $reservation = Reservation::where('reservation_code', $code)->first();
 
         if ($reservation) {
             $reservation->delete();
 
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => "Reservation {$code} has been successfully cancelled.",
+                ]);
+            }
+
             return redirect()->route('reservations.index')->with('info', "Reservation {$code} has been successfully cancelled.");
+        }
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Reservation could not be found.',
+            ], 404);
         }
 
         return redirect()->route('reservations.index')->with('error', 'Reservation could not be found.');
