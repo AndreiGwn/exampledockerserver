@@ -18,6 +18,21 @@ return new class extends Migration
             DB::unprepared($sql);
         }
 
+        // Ensure users table has role, phone, and company_name columns
+        if (Schema::hasTable('users')) {
+            Schema::table('users', function ($table) {
+                if (! Schema::hasColumn('users', 'role')) {
+                    $table->string('role', 50)->default('eigenaar')->index();
+                }
+                if (! Schema::hasColumn('users', 'phone')) {
+                    $table->string('phone', 50)->nullable();
+                }
+                if (! Schema::hasColumn('users', 'company_name')) {
+                    $table->string('company_name', 255)->nullable();
+                }
+            });
+        }
+
         // 2. Load and register all Stored Procedures from Stored Procedures directory
         $spDirectory = base_path('Stored Procedures');
         if (is_dir($spDirectory)) {
