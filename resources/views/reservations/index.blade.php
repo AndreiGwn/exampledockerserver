@@ -40,12 +40,16 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo -->
                 <a href="{{ route('hotels.index') }}" class="flex items-center gap-3.5 group">
-                    <div class="w-11 h-11 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/30">
-                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-cover">
+                    <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
+                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-xl">
                     </div>
-                    <div>
-                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Gogan <span class="text-amber-600 dark:text-amber-400 font-serif italic">Space</span></span>
-                        <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Netherlands Sanctuary</span>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-xl sm:text-2xl font-bold tracking-tight font-serif text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">
+                            Gogan Space
+                        </span>
+                        <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-600 dark:text-amber-400 leading-none mt-1">
+                            Hotels &bull; Netherlands
+                        </span>
                     </div>
                 </a>
 
