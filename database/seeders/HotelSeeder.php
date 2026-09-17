@@ -2,255 +2,308 @@
 
 namespace Database\Seeders;
 
+use App\Models\Amenity;
+use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class HotelSeeder extends Seeder
 {
     /**
-     * Run the database seeds for hotels, rooms, amenities, and reviews.
+     * Run the database seeds for GSHotel 4-5 star luxury hotels in the Netherlands.
      */
     public function run(): void
     {
         // 1. Ensure core schema tables exist
         $this->ensureTablesExist();
 
-        // 2. Create Amenities
-        $amenities = [
-            ['name' => 'Free High-Speed WiFi', 'icon' => 'wifi'],
-            ['name' => 'Swimming Pool', 'icon' => 'swimming-pool'],
-            ['name' => 'Wellness & Spa', 'icon' => 'spa'],
-            ['name' => 'Fitness Gym', 'icon' => 'dumbbell'],
-            ['name' => 'Restaurant & Skybar', 'icon' => 'utensils'],
-            ['name' => 'Air Conditioning', 'icon' => 'snowflake'],
-            ['name' => '24/7 Room Service', 'icon' => 'concierge-bell'],
-            ['name' => 'EV Charging Station', 'icon' => 'charging-station'],
-            ['name' => 'Airport Shuttle', 'icon' => 'shuttle-van'],
-            ['name' => 'Pet Friendly', 'icon' => 'paw'],
+        // 2. Create Luxury Amenities
+        $amenityData = [
+            ['name' => 'Signature Wellness & Spa', 'icon' => 'spa'],
+            ['name' => 'Indoor Heated Pool & Jacuzzi', 'icon' => 'swimming-pool'],
+            ['name' => 'Michelin-Star Gastronomy', 'icon' => 'utensils'],
+            ['name' => 'Panoramic Canal Views', 'icon' => 'water'],
+            ['name' => '24/7 Private Concierge', 'icon' => 'concierge-bell'],
+            ['name' => 'High-Speed Fiber WiFi', 'icon' => 'wifi'],
+            ['name' => 'Chauffeured Valet Service', 'icon' => 'car'],
+            ['name' => 'Serene Garden & Courtyard', 'icon' => 'leaf'],
+            ['name' => 'Rooftop Champagne Lounge', 'icon' => 'glass-cheers'],
+            ['name' => 'Bespoke In-Room Aromatherapy', 'icon' => 'wind'],
         ];
 
-        $amenityIds = [];
-        foreach ($amenities as $amenity) {
-            $id = DB::table('amenities')->insertGetId([
-                'name' => $amenity['name'],
-                'icon' => $amenity['icon'],
-                'created_at' => now(),
-                'updated_at' => now(),
+        $amenities = [];
+        foreach ($amenityData as $a) {
+            $amenity = Amenity::updateOrCreate(['name' => $a['name']], [
+                'icon' => $a['icon'],
             ]);
-            $amenityIds[] = $id;
+            $amenities[] = $amenity;
         }
 
-        // 3. Create Eigenaar (Hotel Owner) Users
-        $owner1Id = DB::table('users')->insertGetId([
-            'name' => 'Jan de Vries',
-            'email' => 'owner@kcw-hotels.nl',
-            'password' => Hash::make('password'),
-            'role' => 'eigenaar',
-            'phone' => '+31 20 555 1234',
-            'company_name' => 'Grand Dutch Hospitality B.V.',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        $owner2Id = DB::table('users')->insertGetId([
-            'name' => 'Sophie van Dijk',
-            'email' => 'eigenaar@trivago-example.com',
-            'password' => Hash::make('password'),
-            'role' => 'eigenaar',
-            'phone' => '+31 10 444 5678',
-            'company_name' => 'Boutique Collection NL',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        // 4. Create Curated Hotels
+        // 3. Curated 4-5 Star Dutch Luxury Hotels
         $hotelsData = [
             [
-                'user_id' => $owner1Id,
-                'name' => 'Grand Canal Palace Hotel',
-                'description' => 'Luxury 5-star canal-side residence in historic central Amsterdam. Features stunning canal views, world-class dining, and premium wellness facilities.',
+                'name' => 'Conservatorium Hotel Amsterdam',
                 'city' => 'Amsterdam',
-                'address' => 'Herengracht 380, 1016 CJ Amsterdam',
+                'address' => 'Paulus Potterstraat 50, 1071 DB Amsterdam',
                 'star_rating' => 5,
-                'price_per_night' => 249.00,
-                'image_url' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 20 888 1122',
-                'email' => 'reservations@grandcanalpalace.nl',
-                'is_featured' => 1,
-                'amenities' => [0, 1, 2, 3, 4, 5, 6],
+                'price_per_night' => 385.00,
+                'rating_score' => 4.9,
+                'featured' => true,
+                'phone' => '+31 20 570 0000',
+                'email' => 'experience@conservatoriumhotel.com',
+                'description' => 'A masterpiece of contemporary architectural elegance in the heart of Amsterdam\'s Museum Square. Offering the world-renowned Akasha Holistic Wellbeing Centre, peaceful inner atriums, and refined dining.',
+                'image_url' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 1, 2, 4, 5, 6, 7, 9],
                 'rooms' => [
-                    ['name' => 'Deluxe Canal View Room', 'type' => 'Deluxe Room', 'price' => 249.00, 'capacity' => 2, 'beds' => '1 King Bed', 'img' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Executive Canal Suite', 'type' => 'Executive Suite', 'price' => 419.00, 'capacity' => 3, 'beds' => '1 Super King + 1 Sofa Bed', 'img' => 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Royal Penthouse Suite', 'type' => 'Presidential Suite', 'price' => 789.00, 'capacity' => 4, 'beds' => '2 King Beds', 'img' => 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80'],
-                ],
-                'reviews' => [
-                    ['name' => 'Emma Watson', 'rating' => 9.4, 'comment' => 'Exceptional service and the canal view from the balcony was breathtaking!'],
-                    ['name' => 'Lars Lindqvist', 'rating' => 9.0, 'comment' => 'Top notch breakfast and prime location. Highly recommended.'],
+                    [
+                        'name' => 'Grand Deluxe Suite',
+                        'room_type' => 'Executive Suite',
+                        'price_per_night' => 385.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'Custom King Bed',
+                        'description' => 'Spacious sanctuary with soaring ceilings, marble soaking bathtub, and views of the historic museum district.',
+                        'image_url' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
+                    ],
+                    [
+                        'name' => 'Heritage Duplex Suite',
+                        'room_type' => 'Duplex Penthouse',
+                        'price_per_night' => 620.00,
+                        'max_guests' => 3,
+                        'bed_type' => '1 Super King + Daybed',
+                        'description' => 'Two-floor luxury suite with private terrace, integrated sound system, and dedicated butler service.',
+                        'image_url' => 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+                    ],
                 ],
             ],
             [
-                'user_id' => $owner2Id,
-                'name' => 'The Modernist Rotterdam Harbor',
-                'description' => 'Architectural boutique hotel overlooking the Erasmus Bridge. Sleek contemporary interiors, skyline panoramic rooftop, and artisan dining.',
-                'city' => 'Rotterdam',
-                'address' => 'Wilhelminakade 120, 3072 AR Rotterdam',
-                'star_rating' => 4,
-                'price_per_night' => 159.00,
-                'image_url' => 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 10 999 4433',
-                'email' => 'stay@themodernist-rdam.nl',
-                'is_featured' => 1,
-                'amenities' => [0, 3, 4, 5, 7],
-                'rooms' => [
-                    ['name' => 'Skyline Panorama Room', 'type' => 'Superior Double', 'price' => 159.00, 'capacity' => 2, 'beds' => '1 Queen Bed', 'img' => 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Bridge View Loft', 'type' => 'Studio Suite', 'price' => 239.00, 'capacity' => 2, 'beds' => '1 King Bed', 'img' => 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80'],
-                ],
-                'reviews' => [
-                    ['name' => 'Mark van Bergen', 'rating' => 8.8, 'comment' => 'Incredible architecture, modern vibe and fantastic cocktails on the roof.'],
-                ],
-            ],
-            [
-                'user_id' => $owner1Id,
-                'name' => 'Dom Tower Heritage Inn',
-                'description' => 'Charming boutique hotel located right next to the historic Dom Tower in Utrecht. Authentic historic architecture with modern luxury comforts.',
-                'city' => 'Utrecht',
-                'address' => 'Domplein 15, 3512 JC Utrecht',
-                'star_rating' => 4,
-                'price_per_night' => 135.00,
-                'image_url' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 30 777 2211',
-                'email' => 'info@domtowerhotel.nl',
-                'is_featured' => 0,
-                'amenities' => [0, 4, 5, 6],
-                'rooms' => [
-                    ['name' => 'Classic Heritage Room', 'type' => 'Standard Double', 'price' => 135.00, 'capacity' => 2, 'beds' => '1 Queen Bed', 'img' => 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Dom View Suite', 'type' => 'Junior Suite', 'price' => 210.00, 'capacity' => 3, 'beds' => '1 King Bed + 1 Rollaway', 'img' => 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80'],
-                ],
-                'reviews' => [
-                    ['name' => 'Sophie Laurent', 'rating' => 9.1, 'comment' => 'Cosy, authentic and romantic hotel right in the heart of Utrecht.'],
-                ],
-            ],
-            [
-                'user_id' => $owner2Id,
-                'name' => 'Royal Seaside Resort & Spa',
-                'description' => 'Luxury beachfront oasis in Scheveningen, The Hague. Offering oceanfront suites, an indoor seawater spa pool, and seaside terrace.',
+                'name' => 'Hotel Des Indes The Hague',
                 'city' => 'The Hague',
-                'address' => 'Gevers Deynootweg 130, 2586 CP Den Haag',
+                'address' => 'Lange Voorhout 54, 2514 EG Den Haag',
                 'star_rating' => 5,
-                'price_per_night' => 215.00,
-                'image_url' => 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 70 333 8899',
-                'email' => 'welcome@royalseaside-thehague.nl',
-                'is_featured' => 1,
-                'amenities' => [0, 1, 2, 3, 4, 5, 6, 7],
+                'price_per_night' => 295.00,
+                'rating_score' => 4.9,
+                'featured' => true,
+                'phone' => '+31 70 361 2345',
+                'email' => 'reservations@desindes.com',
+                'description' => 'A legendary 5-star palace hotel steeped in royal heritage on the tree-lined Lange Voorhout. Experience classical grandeur, bespoke afternoon tea, and pure serene luxury.',
+                'image_url' => 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 2, 4, 5, 6, 7, 8],
                 'rooms' => [
-                    ['name' => 'Ocean Breeze Standard', 'type' => 'Double Room', 'price' => 215.00, 'capacity' => 2, 'beds' => '1 King Bed', 'img' => 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Sunset Ocean Suite', 'type' => 'Ocean Suite', 'price' => 365.00, 'capacity' => 4, 'beds' => '2 Queen Beds', 'img' => 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80'],
-                ],
-                'reviews' => [
-                    ['name' => 'Julian Davies', 'rating' => 9.5, 'comment' => 'Incredible spa facilities and sleeping with the sound of the North Sea waves.'],
+                    [
+                        'name' => 'Royal Classic Room',
+                        'room_type' => 'Deluxe King',
+                        'price_per_night' => 295.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'Royal Plush King',
+                        'description' => 'Exquisitely decorated with ornate draperies, crystal chandeliers, and peaceful garden views.',
+                        'image_url' => 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80',
+                    ],
+                    [
+                        'name' => 'Baron von Brienen Suite',
+                        'room_type' => 'Palace Suite',
+                        'price_per_night' => 540.00,
+                        'max_guests' => 3,
+                        'bed_type' => 'Emperor Bed',
+                        'description' => 'Magnificent parlor suite with authentic antique furnishings, private dining salon, and deep spa bath.',
+                        'image_url' => 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80',
+                    ],
                 ],
             ],
             [
-                'user_id' => $owner2Id,
-                'name' => 'Château de Maastricht Wellness Estate',
-                'description' => 'Historic castle estate nestled in the rolling hills of South Limburg. Michelin-starred restaurant, Roman baths, and vineyard trails.',
+                'name' => 'Grand Hotel Karel V Utrecht',
+                'city' => 'Utrecht',
+                'address' => 'Geertebolwerk 1, 3511 XA Utrecht',
+                'star_rating' => 5,
+                'price_per_night' => 245.00,
+                'rating_score' => 4.8,
+                'featured' => true,
+                'phone' => '+31 30 233 7555',
+                'email' => 'hospitality@karelv.nl',
+                'description' => 'An urban oasis of 10,000 m² of monumental historic gardens, former medieval monastery, Roman wellness spa, and Michelin-starred culinary excellence in tranquil Utrecht.',
+                'image_url' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 1, 2, 5, 6, 7, 9],
+                'rooms' => [
+                    [
+                        'name' => 'Garden Wing Deluxe',
+                        'room_type' => 'Garden View Room',
+                        'price_per_night' => 245.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Bed',
+                        'description' => 'Peaceful room overlooking the ancient walled gardens with birdsong and botanical beauty.',
+                        'image_url' => 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80',
+                    ],
+                    [
+                        'name' => 'Monastery Garden Suite',
+                        'room_type' => 'Wellness Suite',
+                        'price_per_night' => 430.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Bed',
+                        'description' => 'Features a private Finnish sauna, direct courtyard garden access, and organic herbal amenities.',
+                        'image_url' => 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Kruisherenhotel Maastricht',
                 'city' => 'Maastricht',
-                'address' => 'Joseph Bechlaan 10, 6229 GR Maastricht',
+                'address' => 'Kruisherengang 19, 6211 NW Maastricht',
                 'star_rating' => 5,
-                'price_per_night' => 280.00,
-                'image_url' => 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 43 222 7700',
-                'email' => 'concierge@chateaumaastricht.nl',
-                'is_featured' => 1,
-                'amenities' => [0, 1, 2, 3, 4, 5, 6, 7, 9],
+                'price_per_night' => 310.00,
+                'rating_score' => 4.9,
+                'featured' => true,
+                'phone' => '+31 43 329 2020',
+                'email' => 'info@kruisherenhotel.nl',
+                'description' => 'A breathtaking fusion of a 15th-century Gothic monastery and avant-garde luxury design. Ambient stained-glass lighting, wine mezzanine, and tranquil monastic cloister.',
+                'image_url' => 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 2, 4, 5, 7, 8, 9],
                 'rooms' => [
-                    ['name' => 'Castle Garden Deluxe', 'type' => 'Deluxe Room', 'price' => 280.00, 'capacity' => 2, 'beds' => '1 King Bed', 'img' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Tower Knight Suite', 'type' => 'Castle Suite', 'price' => 495.00, 'capacity' => 2, 'beds' => '1 Four-Poster King Bed', 'img' => 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80'],
-                ],
-                'reviews' => [
-                    ['name' => 'Charlotte Becker', 'rating' => 9.7, 'comment' => 'Pure fairytale experience! The castle grounds and dining were unmatched.'],
+                    [
+                        'name' => 'Cloister Heritage Room',
+                        'room_type' => 'Superior Double',
+                        'price_per_night' => 310.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'Design King Bed',
+                        'description' => 'Artistic serenity with original monastic stone arches, designer lighting, and espresso bar.',
+                        'image_url' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
+                    ],
+                    [
+                        'name' => 'Sanctuary Choir Suite',
+                        'room_type' => 'Master Suite',
+                        'price_per_night' => 520.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Size',
+                        'description' => 'Located in the historic church apse with soaring vaulted ceilings and panoramic garden vistas.',
+                        'image_url' => 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80',
+                    ],
                 ],
             ],
             [
-                'user_id' => $owner1Id,
-                'name' => 'TechDistrict City Hotel',
-                'description' => 'Smart eco-hotel in the heart of Eindhoven technology hub. High-speed automation, soundproof pods, and minimalist luxury.',
-                'city' => 'Eindhoven',
-                'address' => 'Torenallee 20, 5617 BC Eindhoven',
-                'star_rating' => 3,
-                'price_per_night' => 89.00,
-                'image_url' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
-                'phone' => '+31 40 111 6655',
-                'email' => 'hello@techdistricthotel.nl',
-                'is_featured' => 0,
-                'amenities' => [0, 3, 5, 7],
+                'name' => 'Mainport Design Hotel Rotterdam',
+                'city' => 'Rotterdam',
+                'address' => 'Leuvehaven 77, 3011 EA Rotterdam',
+                'star_rating' => 5,
+                'price_per_night' => 210.00,
+                'rating_score' => 4.8,
+                'featured' => false,
+                'phone' => '+31 10 217 5757',
+                'email' => 'reservations@mainporthotel.com',
+                'description' => 'Waterfront luxury on the Leuvehaven harbor. Features private in-room whirlpools, Finnish saunas, panoramic harbor views, and the heavenly Spa Heaven 8th-floor sanctuary.',
+                'image_url' => 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 1, 3, 5, 6, 8, 9],
                 'rooms' => [
-                    ['name' => 'Smart Pod Single', 'type' => 'Single Pod', 'price' => 89.00, 'capacity' => 1, 'beds' => '1 Single Bed', 'img' => 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80'],
-                    ['name' => 'Tech Duo Room', 'type' => 'Standard Double', 'price' => 119.00, 'capacity' => 2, 'beds' => '1 Queen Bed', 'img' => 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80'],
+                    [
+                        'name' => 'Waterfront Spa Room',
+                        'room_type' => 'Deluxe Spa Room',
+                        'price_per_night' => 210.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Bed',
+                        'description' => 'Equipped with an oversized whirlpool overlooking the harbor and a private walk-in rainfall shower.',
+                        'image_url' => 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80',
+                    ],
+                    [
+                        'name' => 'Harbor Panorama Suite',
+                        'room_type' => 'Panoramic Suite',
+                        'price_per_night' => 375.00,
+                        'max_guests' => 3,
+                        'bed_type' => 'King Bed + Lounge',
+                        'description' => 'Floor-to-ceiling glass windows, private sauna, and complimentary champagne upon arrival.',
+                        'image_url' => 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80',
+                    ],
                 ],
-                'reviews' => [
-                    ['name' => 'Dennis Schmidt', 'rating' => 8.4, 'comment' => 'Super fast check-in, spotless clean, and perfect for business travelers.'],
+            ],
+            [
+                'name' => 'The Dylan Amsterdam Boutique',
+                'city' => 'Amsterdam',
+                'address' => 'Keizersgracht 384, 1016 GB Amsterdam',
+                'star_rating' => 5,
+                'price_per_night' => 340.00,
+                'rating_score' => 4.9,
+                'featured' => true,
+                'phone' => '+31 20 530 2010',
+                'email' => 'concierge@dylanamsterdam.com',
+                'description' => 'Nestled on the prestigious Keizersgracht canal. An intimate haven with a secluded courtyard garden, Michelin-starred Restaurant Vinkeles, and tailored luxury experiences.',
+                'image_url' => 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 2, 3, 4, 5, 7, 9],
+                'rooms' => [
+                    [
+                        'name' => 'Canal View Luxury Loft',
+                        'room_type' => 'Luxury Loft',
+                        'price_per_night' => 340.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Size',
+                        'description' => 'Oak beams, serene canal vistas, and artisanal Frette linens for the ultimate restful stay.',
+                        'image_url' => 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Inntel Hotels Art Eindhoven',
+                'city' => 'Eindhoven',
+                'address' => 'Lichttoren 22, 5611 BJ Eindhoven',
+                'star_rating' => 4,
+                'price_per_night' => 145.00,
+                'rating_score' => 4.7,
+                'featured' => false,
+                'phone' => '+31 40 751 3500',
+                'email' => 'infoarteindhoven@inntelhotels.nl',
+                'description' => 'Set within the historic Philips Light Tower. 4-star design sanctuary featuring 4-meter high ceilings, art installations, Finnish sauna, and tranquil Turkish steam bath.',
+                'image_url' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
+                'amenities_idx' => [0, 1, 5, 7, 9],
+                'rooms' => [
+                    [
+                        'name' => 'Art Deluxe Room',
+                        'room_type' => 'Deluxe King',
+                        'price_per_night' => 145.00,
+                        'max_guests' => 2,
+                        'bed_type' => 'King Bed',
+                        'description' => 'Distinctive artistic flair with oversized whirlpool and rain dance shower.',
+                        'image_url' => 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80',
+                    ],
                 ],
             ],
         ];
 
-        foreach ($hotelsData as $hData) {
-            $hotelId = DB::table('hotels')->insertGetId([
-                'user_id' => $hData['user_id'],
-                'name' => $hData['name'],
-                'description' => $hData['description'],
-                'city' => $hData['city'],
-                'address' => $hData['address'],
-                'star_rating' => $hData['star_rating'],
-                'price_per_night' => $hData['price_per_night'],
-                'image_url' => $hData['image_url'],
-                'phone' => $hData['phone'],
-                'email' => $hData['email'],
-                'is_featured' => $hData['is_featured'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        foreach ($hotelsData as $h) {
+            $hotel = Hotel::updateOrCreate(
+                ['name' => $h['name']],
+                [
+                    'city' => $h['city'],
+                    'address' => $h['address'],
+                    'star_rating' => $h['star_rating'],
+                    'price_per_night' => $h['price_per_night'],
+                    'rating_score' => $h['rating_score'],
+                    'featured' => $h['featured'],
+                    'phone' => $h['phone'],
+                    'email' => $h['email'],
+                    'description' => $h['description'],
+                    'image_url' => $h['image_url'],
+                ]
+            );
 
-            // Link Amenities
-            foreach ($hData['amenities'] as $idx) {
-                if (isset($amenityIds[$idx])) {
-                    DB::table('hotel_amenities')->insert([
-                        'hotel_id' => $hotelId,
-                        'amenity_id' => $amenityIds[$idx],
-                    ]);
+            // Attach Amenities
+            $attachIds = [];
+            foreach ($h['amenities_idx'] as $idx) {
+                if (isset($amenities[$idx])) {
+                    $attachIds[] = $amenities[$idx]->id;
                 }
             }
+            $hotel->amenities()->sync($attachIds);
 
-            // Insert Rooms
-            foreach ($hData['rooms'] as $room) {
-                DB::table('rooms')->insert([
-                    'hotel_id' => $hotelId,
-                    'name' => $room['name'],
-                    'room_type' => $room['type'],
-                    'price_per_night' => $room['price'],
-                    'capacity' => $room['capacity'],
-                    'beds' => $room['beds'],
-                    'description' => 'Comfortable and fully appointed room with premium bedding, private bathroom, and free high-speed WiFi.',
-                    'image_url' => $room['img'],
-                    'is_available' => 1,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-
-            // Insert Reviews
-            foreach ($hData['reviews'] as $rev) {
-                DB::table('reviews')->insert([
-                    'hotel_id' => $hotelId,
-                    'reviewer_name' => $rev['name'],
-                    'rating' => $rev['rating'],
-                    'comment' => $rev['comment'],
-                    'created_at' => now()->subDays(rand(1, 30)),
-                    'updated_at' => now(),
-                ]);
+            // Create Rooms
+            foreach ($h['rooms'] as $r) {
+                Room::updateOrCreate(
+                    ['hotel_id' => $hotel->id, 'name' => $r['name']],
+                    [
+                        'room_type' => $r['room_type'],
+                        'price_per_night' => $r['price_per_night'],
+                        'max_guests' => $r['max_guests'],
+                        'bed_type' => $r['bed_type'],
+                        'description' => $r['description'],
+                        'image_url' => $r['image_url'],
+                    ]
+                );
             }
         }
     }

@@ -1,119 +1,96 @@
--- =============================================================================
--- Database Creation Script: Hotel Trivago Platform
--- Project: LaravelSailExample / Kniploket Tiko Directive Compliance
--- Rules & Regulations: Rule 1 (Manual SQL script for core database creation)
--- =============================================================================
+-- ==============================================================================
+-- GSHotel Platform - Database Creation Script
+-- Luxury 4-5 Star Hotels in the Netherlands with Instant Guest Reservations
+-- ==============================================================================
 
--- Disable foreign key checks for clean recreation if running full script
 SET FOREIGN_KEY_CHECKS = 0;
 
--- -----------------------------------------------------------------------------
--- Table: users
--- Roles: 'eigenaar' (hotel owner), 'guest' (default)
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS users (
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    email_verified_at TIMESTAMP NULL DEFAULT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(50) NOT NULL DEFAULT 'eigenaar',
-    phone VARCHAR(50) NULL DEFAULT NULL,
-    company_name VARCHAR(255) NULL DEFAULT NULL,
-    remember_token VARCHAR(100) NULL DEFAULT NULL,
-    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_users_role (role)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- 1. Hotels Table
+DROP TABLE IF EXISTS hotel_amenities;
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS amenities;
+DROP TABLE IF EXISTS hotels;
 
--- -----------------------------------------------------------------------------
--- Table: hotels
--- Represents hotel properties registered by an 'eigenaar'
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS hotels (
+CREATE TABLE hotels (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT UNSIGNED NOT NULL,
     name VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
     city VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    star_rating INT NOT NULL DEFAULT 3,
-    price_per_night DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
-    image_url VARCHAR(500) NULL DEFAULT NULL,
-    phone VARCHAR(50) NULL DEFAULT NULL,
-    email VARCHAR(255) NULL DEFAULT NULL,
-    is_featured TINYINT(1) NOT NULL DEFAULT 0,
+    star_rating TINYINT UNSIGNED NOT NULL DEFAULT 5, -- 4 or 5 stars
+    price_per_night DECIMAL(10, 2) NOT NULL,
+    description TEXT NOT NULL,
+    image_url VARCHAR(500) NOT NULL,
+    gallery_images JSON NULL,
+    featured BOOLEAN NOT NULL DEFAULT TRUE,
+    rating_score DECIMAL(3, 1) NOT NULL DEFAULT 4.9,
+    phone VARCHAR(50) NULL,
+    email VARCHAR(255) NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_hotels_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    INDEX idx_hotels_city (city),
-    INDEX idx_hotels_star_rating (star_rating),
-    INDEX idx_hotels_price (price_per_night),
-    INDEX idx_hotels_user_id (user_id)
+    INDEX idx_city (city),
+    INDEX idx_stars (star_rating),
+    INDEX idx_price (price_per_night)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------------------------------
--- Table: rooms
--- Represents room types and offerings inside a hotel
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS rooms (
+-- 2. Rooms / Suites Table
+CREATE TABLE rooms (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     hotel_id BIGINT UNSIGNED NOT NULL,
     name VARCHAR(255) NOT NULL,
-    room_type VARCHAR(100) NOT NULL DEFAULT 'Standard Room',
+    room_type VARCHAR(100) NOT NULL, -- e.g. Executive Suite, Presidential Suite, Deluxe Canal View
     price_per_night DECIMAL(10, 2) NOT NULL,
-    capacity INT NOT NULL DEFAULT 2,
-    beds VARCHAR(100) NOT NULL DEFAULT '1 Queen Bed',
-    description TEXT NULL DEFAULT NULL,
-    image_url VARCHAR(500) NULL DEFAULT NULL,
-    is_available TINYINT(1) NOT NULL DEFAULT 1,
+    max_guests INT UNSIGNED NOT NULL DEFAULT 2,
+    bed_type VARCHAR(100) NOT NULL DEFAULT 'King Size',
+    description TEXT NULL,
+    image_url VARCHAR(500) NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_rooms_hotel FOREIGN KEY (hotel_id) REFERENCES hotels (id) ON DELETE CASCADE,
-    INDEX idx_rooms_hotel_id (hotel_id),
-    INDEX idx_rooms_price (price_per_night),
-    INDEX idx_rooms_capacity (capacity),
-    INDEX idx_rooms_available (is_available)
+    FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------------------------------
--- Table: amenities
--- Features available at hotels (e.g. WiFi, Pool, Spa, Breakfast, Gym)
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS amenities (
+-- 3. Amenities Table
+CREATE TABLE amenities (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
-    icon VARCHAR(100) NOT NULL DEFAULT 'check-circle',
+    icon VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------------------------------
--- Pivot Table: hotel_amenities
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS hotel_amenities (
+-- 4. Hotel Amenities Pivot Table
+CREATE TABLE hotel_amenities (
     hotel_id BIGINT UNSIGNED NOT NULL,
     amenity_id BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (hotel_id, amenity_id),
-    CONSTRAINT fk_ha_hotel FOREIGN KEY (hotel_id) REFERENCES hotels (id) ON DELETE CASCADE,
-    CONSTRAINT fk_ha_amenity FOREIGN KEY (amenity_id) REFERENCES amenities (id) ON DELETE CASCADE
+    FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE,
+    FOREIGN KEY (amenity_id) REFERENCES amenities(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------------------------------
--- Table: reviews
--- Guest ratings and feedback for hotels
--- -----------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS reviews (
+-- 5. Guest Reservations Table
+CREATE TABLE reservations (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    reservation_code VARCHAR(32) NOT NULL UNIQUE,
     hotel_id BIGINT UNSIGNED NOT NULL,
-    reviewer_name VARCHAR(255) NOT NULL,
-    rating DECIMAL(3, 1) NOT NULL DEFAULT 8.0,
-    comment TEXT NOT NULL,
+    room_id BIGINT UNSIGNED NULL,
+    guest_name VARCHAR(255) NOT NULL,
+    guest_email VARCHAR(255) NOT NULL,
+    guest_phone VARCHAR(50) NOT NULL,
+    guest_address VARCHAR(255) NULL,
+    check_in DATE NULL,
+    check_out DATE NULL,
+    guests_count INT UNSIGNED NOT NULL DEFAULT 2,
+    special_requests TEXT NULL,
+    session_id VARCHAR(100) NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'Confirmed',
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_reviews_hotel FOREIGN KEY (hotel_id) REFERENCES hotels (id) ON DELETE CASCADE,
-    INDEX idx_reviews_hotel_id (hotel_id)
+    INDEX idx_reservation_code (reservation_code),
+    INDEX idx_guest_email (guest_email),
+    INDEX idx_session (session_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Re-enable foreign key checks
 SET FOREIGN_KEY_CHECKS = 1;
