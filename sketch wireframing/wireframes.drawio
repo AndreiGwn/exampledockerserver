@@ -1,0 +1,122 @@
+<mxfile host="app.diagrams.net" modified="2026-09-17T10:30:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram id="wireframes-all" name="Responsive Wireframes (Desktop, Tablet, Mobile)">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- SECTION 1: DESKTOP VIEW (1440px) -->
+        <mxCell id="sec-desktop" value="DESKTOP VIEW (1440px x 900px)" style="swimlane;whiteSpace=wrap;html=1;fontSize=18;fontStyle=1;fillColor=#f8fafc;strokeColor=#475569;startSize=40;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="720" height="960" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Navigation -->
+        <mxCell id="d-nav" value="Header: [Logo: TrivagoHotel] | Search | Eigenaar Dashboard | Inloggen / Registreren" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#0f172a;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="50" width="680" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Hero Search Bar -->
+        <mxCell id="d-hero" value="HERO SEARCH COMPONENT (Trivago Style)&#xa;[ Destination / City Dropdown ] [ Min Stars ★ ] [ Price Range: Min-Max € ] [ Guests: 2 ] [ Zoek Hotels Button ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#38bdf8;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="110" width="680" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Results Summary & Sort Filter -->
+        <mxCell id="d-filter-bar" value="Filters &amp; Sortering: Sorteren op: [ Aanbevolen | Prijs Laag-Hoog | Beoordeling ] — 6 Accommodaties gevonden" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e8f0;strokeColor=#cbd5e1;fontSize=11;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="200" width="680" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Hotel Card 1 -->
+        <mxCell id="d-card-1" value="[Hotel Photo: Grand Canal Palace]&#xa;⭐⭐⭐⭐⭐ (5 Sterren) | Amsterdam&#xa;Grand Canal Palace Hotel&#xa;Score: 9.4 Exceptional (12 reviews)&#xa;Vanaf €249 / nacht&#xa;[ Bekijk Deals Button ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=15;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="250" width="215" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Hotel Card 2 -->
+        <mxCell id="d-card-2" value="[Hotel Photo: The Modernist]&#xa;⭐⭐⭐⭐ (4 Sterren) | Rotterdam&#xa;The Modernist Rotterdam Harbor&#xa;Score: 8.8 Great (1 review)&#xa;Vanaf €159 / nacht&#xa;[ Bekijk Deals Button ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=15;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="250" y="250" width="215" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Hotel Card 3 -->
+        <mxCell id="d-card-3" value="[Hotel Photo: Dom Tower Heritage]&#xa;⭐⭐⭐⭐ (4 Sterren) | Utrecht&#xa;Dom Tower Heritage Inn&#xa;Score: 9.1 Superb (1 review)&#xa;Vanaf €135 / nacht&#xa;[ Bekijk Deals Button ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=15;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="480" y="250" width="220" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Hotel Details View Section -->
+        <mxCell id="d-detail-sec" value="HOTEL DETAILS VIEW: Grand Canal Palace Hotel&#xa;Gallery Photo Banner (Herengracht, Amsterdam)&#xa;Over dit Hotel: Luxury canal-side residence with wellness &amp; Michelin dining.&#xa;Beschikbare Kamers:&#xa;• Deluxe Canal View (€249/nacht - 2 pers) [ Selecteer ]&#xa;• Executive Canal Suite (€419/nacht - 3 pers) [ Selecteer ]&#xa;Geverifieerde Eigenaar: Grand Dutch Hospitality B.V. (owner@kcw-hotels.nl)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;align=left;spacingLeft=20;fontSize=11;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="530" width="680" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Desktop Owner Dashboard View -->
+        <mxCell id="d-owner-dash" value="EIGENAAR DASHBOARD &amp; MANAGEMENT&#xa;[ Metrics: 2 Hotels | 5 Kamers | Actief Eigenaar ]&#xa;Hotels Table:&#xa;| Hotelnaam | Stad | Sterren | Kamers | Prijs/Nacht | Acties: [Kamers] [Bewerk] [Verwijder] |" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;align=left;spacingLeft=20;fontSize=11;" vertex="1" parent="sec-desktop">
+          <mxGeometry x="20" y="750" width="680" height="180" as="geometry" />
+        </mxCell>
+
+
+        <!-- SECTION 2: TABLET VIEW (768px) -->
+        <mxCell id="sec-tablet" value="TABLET VIEW (768px x 1024px)" style="swimlane;whiteSpace=wrap;html=1;fontSize=18;fontStyle=1;fillColor=#f8fafc;strokeColor=#475569;startSize=40;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="40" width="480" height="960" as="geometry" />
+        </mxCell>
+
+        <!-- Tablet Header -->
+        <mxCell id="t-nav" value="[TrivagoHotel] | ≡ Menu [Eigenaar / Login]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#0f172a;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="15" y="50" width="450" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Tablet Search -->
+        <mxCell id="t-hero" value="SEARCH BAR (Adaptive 2-Column Grid)&#xa;[ Bestemming / Stad ] [ Min Sterren ★ ]&#xa;[ Max Prijs € ] [ Gasten: 2 ]&#xa;[ Zoek Hotels (Volle Breedte Button) ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#38bdf8;fontColor=#ffffff;fontSize=11;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="15" y="110" width="450" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Tablet Hotel Cards 2-Col Grid -->
+        <mxCell id="t-card-1" value="[Photo: Grand Canal Palace]&#xa;⭐⭐⭐⭐⭐ | Amsterdam&#xa;Grand Canal Palace Hotel&#xa;Score: 9.4 | Vanaf €249&#xa;[ Bekijk Deals ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=10;fontSize=10;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="15" y="215" width="215" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="t-card-2" value="[Photo: The Modernist]&#xa;⭐⭐⭐⭐ | Rotterdam&#xa;The Modernist Rotterdam&#xa;Score: 8.8 | Vanaf €159&#xa;[ Bekijk Deals ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=10;fontSize=10;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="245" y="215" width="220" height="230" as="geometry" />
+        </mxCell>
+
+        <!-- Tablet Details & Rooms -->
+        <mxCell id="t-details" value="HOTEL SHOW &amp; KAMERSELECTIE&#xa;[ Responsive Hero Image ]&#xa;Over: Grand Canal Palace (Amsterdam)&#xa;Kamers:&#xa;• Deluxe Room - €249 [ Boek ]&#xa;• Executive Suite - €419 [ Boek ]&#xa;Eigenaar Contact: +31 20 888 1122" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;align=left;spacingLeft=15;fontSize=10;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="15" y="460" width="450" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- Tablet Owner Dashboard -->
+        <mxCell id="t-owner" value="EIGENAAR DASHBOARD (Tablet Optimized)&#xa;[ Stat: 2 Hotels ] [ Stat: 5 Kamers ]&#xa;• Grand Canal Palace - 3 Kamers [Beheer] [Bewerk]&#xa;• The Modernist - 2 Kamers [Beheer] [Bewerk]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;align=left;spacingLeft=15;fontSize=10;" vertex="1" parent="sec-tablet">
+          <mxGeometry x="15" y="700" width="450" height="230" as="geometry" />
+        </mxCell>
+
+
+        <!-- SECTION 3: MOBILE VIEW (375px) -->
+        <mxCell id="sec-mobile" value="MOBILE VIEW (375px x 667px)" style="swimlane;whiteSpace=wrap;html=1;fontSize=18;fontStyle=1;fillColor=#f8fafc;strokeColor=#475569;startSize=40;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="40" width="340" height="960" as="geometry" />
+        </mxCell>
+
+        <!-- Mobile Header -->
+        <mxCell id="m-nav" value="[TrivagoHotel] | ≡ (Menu Drawer)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#0f172a;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="sec-mobile">
+          <mxGeometry x="10" y="50" width="320" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Mobile Search Accordion -->
+        <mxCell id="m-hero" value="MOBILE SEARCH STACK&#xa;[ 🔍 Zoek op stad/bestemming ]&#xa;[ Stad Kiezen ▼ ] [ Sterren ★ ]&#xa;[ Max Prijs: €250 ] [ Gasten: 2 ]&#xa;[ 🔎 ZOEK HOTELS BUTTON ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#38bdf8;fontColor=#ffffff;fontSize=10;" vertex="1" parent="sec-mobile">
+          <mxGeometry x="10" y="105" width="320" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Mobile Hotel Card 1 -->
+        <mxCell id="m-card-1" value="[Image: Grand Canal Palace]&#xa;⭐⭐⭐⭐⭐ | Amsterdam&#xa;Grand Canal Palace Hotel&#xa;Score: 9.4 (12 reviews)&#xa;Vanaf €249 / nacht&#xa;[ Bekijk Deals (Full Width) ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;align=left;spacingLeft=10;fontSize=10;" vertex="1" parent="sec-mobile">
+          <mxGeometry x="10" y="215" width="320" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Mobile Hotel Details -->
+        <mxCell id="m-details" value="HOTEL SHOW (Stacked Layout)&#xa;[ Hotel Photo Banner ]&#xa;Grand Canal Palace (5★)&#xa;Herengracht 380, Amsterdam&#xa;Kamer: Deluxe Room (€249)&#xa;[ Selecteer Kamer ]&#xa;Eigenaar: reservations@grandcanalpalace.nl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;align=left;spacingLeft=10;fontSize=10;" vertex="1" parent="sec-mobile">
+          <mxGeometry x="10" y="420" width="320" height="230" as="geometry" />
+        </mxCell>
+
+        <!-- Mobile Owner Controls -->
+        <mxCell id="m-owner" value="EIGENAAR DASHBOARD (Mobile)&#xa;[ + Nieuw Hotel Toevoegen ]&#xa;• Grand Canal Palace&#xa;  [ 3 Kamers ] [ Bewerk ]&#xa;• Dom Tower Heritage&#xa;  [ 2 Kamers ] [ Bewerk ]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;align=left;spacingLeft=10;fontSize=10;" vertex="1" parent="sec-mobile">
+          <mxGeometry x="10" y="670" width="320" height="250" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

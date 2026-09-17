@@ -1,0 +1,15 @@
+{
+    # Global options
+    frankenphp {
+        # Uncomment for worker mode:
+        # worker ./public/index.php
+    }
+}
+
+:8080 {
+    root * /app/public
+    encode zstd gzip
+    
+    # Execute PHP files through FrankenPHP
+    php_server
+}
