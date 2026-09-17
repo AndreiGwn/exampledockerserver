@@ -56,24 +56,16 @@
 
         <div class="relative z-10 max-w-2xl text-center space-y-8 py-10">
             
-            <!-- Luxury GS Logo Image (Copyright-Free Emblem) -->
-            <div class="relative inline-block group">
-                <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-3xl overflow-hidden gold-glow border-2 border-amber-500/40 shadow-2xl transition-transform duration-500 group-hover:scale-105">
-                    <img src="/images/gs_logo.png" alt="Gogan Space GS Luxury Emblem" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-500/40 text-[10px] font-black tracking-widest uppercase text-amber-300">
-                    Gogan Space Sanctuary
+            <div class="inline-block group">
+                <div class="w-44 h-44 sm:w-56 sm:h-56 mx-auto rounded-3xl overflow-hidden gold-glow border-2 border-amber-500/50 shadow-2xl transition-all duration-500 group-hover:scale-105 p-1 bg-slate-900/60 backdrop-blur-sm">
+                    <img src="/images/gs_logo.png" alt="Gogan Space Luxury Logo" class="w-full h-full object-contain rounded-2xl">
                 </div>
             </div>
 
-            <!-- Welcome Typography -->
-            <div class="space-y-3">
-                <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block">The Netherlands Luxury Portal</span>
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
-                    Welcome to <span class="font-serif italic font-normal text-amber-300">Gogan Space</span>
-                </h1>
+            <!-- Minimalist Luxury Subtitle -->
+            <div class="space-y-2">
                 <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto font-normal leading-relaxed">
-                    Step into an oasis of calm. Curated 4 & 5-star palace hotels, historic canal retreats, and private wellness sanctuaries.
+                    Curated 4 & 5-star palace hotels, canal estates, and private wellness sanctuaries across the Netherlands.
                 </p>
             </div>
 
