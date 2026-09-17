@@ -6,6 +6,10 @@
     <title>{{ $hotel->name }} - GSHotel Luxury Netherlands</title>
     <meta name="description" content="{{ Str::limit($hotel->description, 160) }}">
 
+    <!-- Favicon / URL Tab Logo -->
+    <link rel="icon" type="image/png" href="{{ asset('images/gs_logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/gs_logo.png') }}">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

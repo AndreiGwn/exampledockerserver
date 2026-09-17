@@ -6,6 +6,10 @@
     <title>GSHotel - Curated 4 & 5 Star Luxury Sanctuaries in the Netherlands</title>
     <meta name="description" content="Discover peaceful, high-end 4 and 5-star hotels and wellness resorts in the Netherlands. Reserve your serene stay instantly with GSHotel.">
 
+    <!-- Favicon / URL Tab Logo -->
+    <link rel="icon" type="image/png" href="{{ asset('images/gs_logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/gs_logo.png') }}">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
