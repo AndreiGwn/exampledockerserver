@@ -1,12 +1,12 @@
 <div x-data="gshotelMusicPlayer()" x-init="initAudio()" class="inline-flex items-center">
-    <!-- Ultra-Minimal Header Sound Controller (Play/Pause + Volume Only) -->
-    <div class="flex items-center gap-2 bg-slate-100/90 dark:bg-slate-800/90 px-3 py-1.5 rounded-full border border-slate-200/80 dark:border-slate-700 shadow-sm transition-all hover:border-amber-500/40">
+    <!-- Header Sound Controller with Purrple Cat - Equinox Title -->
+    <div class="flex items-center gap-2 sm:gap-2.5 bg-slate-900/95 px-3 py-1.5 rounded-full border border-amber-500/30 shadow-md backdrop-blur-md transition-all hover:border-amber-500/50">
         
         <!-- Play / Pause Button -->
         <button type="button" 
                 @click="togglePlay()" 
-                class="w-7 h-7 rounded-full bg-amber-500/15 hover:bg-amber-500/25 text-amber-700 dark:text-amber-400 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95" 
-                :title="isPlaying ? 'Pause' : 'Play'">
+                class="w-7 h-7 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 flex-shrink-0" 
+                :title="isPlaying ? 'Pause: Purrple Cat - Equinox' : 'Play: Purrple Cat - Equinox'">
             <template x-if="!isPlaying">
                 <svg class="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
@@ -19,11 +19,25 @@
             </template>
         </button>
 
+        <!-- Track Title & Soundwave Indicator -->
+        <div class="flex items-center gap-1.5 cursor-pointer select-none" @click="togglePlay()" title="Purrple Cat - Equinox">
+            <span class="text-[11px] sm:text-xs font-medium text-slate-200 whitespace-nowrap">
+                Purrple Cat - <span class="text-amber-400 font-semibold">Equinox</span>
+            </span>
+            <div class="hidden sm:flex items-center gap-0.5 h-3 px-0.5">
+                <span class="w-0.5 bg-amber-500 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-3 animate-pulse' : 'h-1 opacity-30'"></span>
+                <span class="w-0.5 bg-amber-400 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-2 animate-bounce' : 'h-1 opacity-30'" style="animation-delay: 150ms"></span>
+                <span class="w-0.5 bg-amber-600 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-2.5 animate-pulse' : 'h-1 opacity-30'" style="animation-delay: 300ms"></span>
+            </div>
+        </div>
+
+        <div class="h-3 w-px bg-slate-700 mx-0.5"></div>
+
         <!-- Volume Icon & Slider -->
         <div class="flex items-center gap-1.5">
             <button type="button" 
                     @click="toggleMute()" 
-                    class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition flex items-center justify-center" 
+                    class="text-slate-400 hover:text-white transition flex items-center justify-center flex-shrink-0" 
                     :title="isMuted ? 'Unmute' : 'Mute'">
                 <template x-if="!isMuted && volume > 0">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +45,7 @@
                     </svg>
                 </template>
                 <template x-if="isMuted || volume == 0">
-                    <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
                     </svg>
@@ -45,7 +59,7 @@
                    step="0.05" 
                    x-model="volume" 
                    @input="updateVolume()" 
-                   class="w-14 sm:w-16 h-1 bg-slate-300 dark:bg-slate-600 rounded-lg appearance-none cursor-pointer accent-amber-600" 
+                   class="w-12 sm:w-16 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500" 
                    title="Volume">
         </div>
 
@@ -63,9 +77,9 @@ function gshotelMusicPlayer() {
         gainNode: null,
         synthInterval: null,
 
-        // Deeply relaxing serene ambient meditation soundscapes
-        primaryTrackUrl: '/audio/meditation_ambient.mp3',
-        fallbackTrackUrl: '/audio/relaxing_sanctuary.ogg',
+        // Purrple Cat - Equinox (CC BY-SA 3.0)
+        primaryTrackUrl: '/audio/purrple-cat-equinox.mp3',
+        fallbackTrackUrl: '/audio/meditation_ambient.mp3',
 
         initAudio() {
             const savedMute = localStorage.getItem('gshotel_music_muted');
@@ -183,12 +197,12 @@ function gshotelMusicPlayer() {
                     this.audioCtx.resume();
                 }
 
-                // Warm, peaceful harmonic chord frequencies (F major 7 / D minor 9 meditation tones)
+                // Warm, peaceful harmonic chord frequencies (Lofi chill ambient tones)
                 const chords = [
-                    [174.61, 220.00, 261.63, 329.63], // Fmaj7 warm pad
-                    [146.83, 220.00, 261.63, 349.23], // Dm7 serene pad
-                    [196.00, 246.94, 293.66, 392.00], // G gentle pad
-                    [164.81, 207.65, 246.94, 329.63]  // E calm pad
+                    [174.61, 220.00, 261.63, 329.63], // Fmaj7
+                    [146.83, 220.00, 261.63, 349.23], // Dm7
+                    [196.00, 246.94, 293.66, 392.00], // G
+                    [164.81, 207.65, 246.94, 329.63]  // E
                 ];
 
                 let chordIdx = 0;
