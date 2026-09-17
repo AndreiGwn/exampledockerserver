@@ -36,10 +36,10 @@
                 <!-- Brand Logo -->
                 <a href="{{ route('hotels.index') }}" class="flex items-center gap-3.5 group">
                     <div class="w-11 h-11 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/30">
-                        <img src="/images/gs_logo.png" alt="GS Logo" class="w-full h-full object-cover">
+                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">GS<span class="text-amber-600 dark:text-amber-400 font-serif italic">Hotel</span></span>
+                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Gogan <span class="text-amber-600 dark:text-amber-400 font-serif italic">Space</span></span>
                         <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Netherlands Sanctuary</span>
                     </div>
                 </a>

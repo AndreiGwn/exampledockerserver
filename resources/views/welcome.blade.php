@@ -59,10 +59,10 @@
             <!-- Luxury GS Logo Image (Copyright-Free Emblem) -->
             <div class="relative inline-block group">
                 <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-3xl overflow-hidden gold-glow border-2 border-amber-500/40 shadow-2xl transition-transform duration-500 group-hover:scale-105">
-                    <img src="/images/gs_logo.png" alt="GS Hotel Luxury Emblem" class="w-full h-full object-cover">
+                    <img src="/images/gs_logo.png" alt="Gogan Space GS Luxury Emblem" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-500/40 text-[10px] font-black tracking-widest uppercase text-amber-300">
-                    Sanctuary Collection
+                    Gogan Space Sanctuary
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
             <div class="space-y-3">
                 <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block">The Netherlands Luxury Portal</span>
                 <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
-                    Welcome to <span class="font-serif italic font-normal text-amber-300">GSHotel</span>
+                    Welcome to <span class="font-serif italic font-normal text-amber-300">Gogan Space</span>
                 </h1>
                 <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto font-normal leading-relaxed">
                     Step into an oasis of calm. Curated 4 & 5-star palace hotels, historic canal retreats, and private wellness sanctuaries.
@@ -109,10 +109,10 @@
                 <!-- Brand Logo (Clicking returns to explore or welcome) -->
                 <div class="flex items-center gap-3.5 cursor-pointer group" @click="switchTab('explore')">
                     <div class="w-11 h-11 rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/30">
-                        <img src="/images/gs_logo.png" alt="GS Logo" class="w-full h-full object-cover">
+                        <img src="/images/gs_logo.png" alt="Gogan Space GS Logo" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">GS<span class="text-amber-600 dark:text-amber-400 font-serif italic">Hotel</span></span>
+                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Gogan <span class="text-amber-600 dark:text-amber-400 font-serif italic">Space</span></span>
                         <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Netherlands Sanctuary</span>
                     </div>
                 </div>
@@ -618,7 +618,7 @@
                 <div class="w-7 h-7 rounded-lg overflow-hidden border border-amber-500/30 inline-block align-middle">
                     <img src="/images/gs_logo.png" alt="GS Logo" class="w-full h-full object-cover">
                 </div>
-                <span class="text-slate-900 dark:text-white font-bold text-base">GSHotel Netherlands</span>
+                <span class="text-slate-900 dark:text-white font-bold text-base">Gogan Space (GSHotel) Netherlands</span>
             </div>
             <p>Peaceful, handpicked 4 and 5-star hotel sanctuaries across Amsterdam, Rotterdam, The Hague, Utrecht, Maastricht and Eindhoven.</p>
             <p class="text-[11px] text-slate-400">© {{ date('Y') }} GSHotel. All rights reserved. Ambient audio plays continuously across all sanctuary tabs.</p>
