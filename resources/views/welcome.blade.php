@@ -88,6 +88,22 @@
                 </div>
             </div>
 
+            <!-- Disclaimer & Copyright Contact Note -->
+            <div class="pt-6 border-t border-slate-800/80 max-w-xl mx-auto">
+                <div class="bg-slate-900/70 backdrop-blur-md rounded-2xl p-4 border border-slate-800/90 text-left text-xs text-slate-400 leading-relaxed shadow-lg flex items-start gap-3">
+                    <div class="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-slate-200">Notice:</span>
+                        <span>This platform is an independent demonstration project and is not affiliated with or endorsed by any featured hotel establishments. For inquiries, copyright notices, or content removal requests, please email:</span>
+                        <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-2 transition ml-1">andrei.gogan9@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -618,7 +634,7 @@
                 <span class="text-slate-900 dark:text-white font-bold text-base">Gogan Space (GSHotel) Netherlands</span>
             </div>
             <p>Peaceful, handpicked 4 and 5-star hotel sanctuaries across Amsterdam, Rotterdam, The Hague, Utrecht, Maastricht and Eindhoven.</p>
-            <p class="text-[11px] text-slate-400">© {{ date('Y') }} GSHotel. All rights reserved. Ambient audio plays continuously across all sanctuary tabs.</p>
+            <p class="text-[11px] text-slate-400">© {{ date('Y') }} Gogan Space. Independent demo project, not affiliated with featured hotel brands. Copyright / inquiries: <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-600 dark:text-amber-400 underline hover:text-amber-500">andrei.gogan9@gmail.com</a></p>
         </div>
     </footer>
 

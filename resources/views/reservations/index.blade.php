@@ -292,9 +292,9 @@
     <!-- Footer -->
     <footer class="bg-white/80 dark:bg-slate-900/80 border-t border-slate-200/80 dark:border-slate-800 py-10 mt-16 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <div class="font-serif italic font-bold text-slate-800 dark:text-slate-200 text-base">GSHotel Luxury Hospitality</div>
+            <div class="font-serif italic font-bold text-slate-800 dark:text-slate-200 text-base">Gogan Space (GSHotel) Luxury Hospitality</div>
             <p>Curated 4 & 5-Star Sanctuaries across Amsterdam, Rotterdam, The Hague, Utrecht & Maastricht.</p>
-            <p class="text-[11px] text-slate-400">© {{ date('Y') }} GSHotel Netherlands. All reservations handled with utmost privacy and bespoke care.</p>
+            <p class="text-[11px] text-slate-400">© {{ date('Y') }} Gogan Space. Independent demo project, not affiliated with featured hotels. Contact / Copyright: <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-600 dark:text-amber-400 underline hover:text-amber-500">andrei.gogan9@gmail.com</a></p>
         </div>
     </footer>
 

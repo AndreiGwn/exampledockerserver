@@ -253,7 +253,10 @@
 
     <!-- Footer -->
     <footer class="bg-white/80 dark:bg-slate-900/80 border-t border-slate-200/80 dark:border-slate-800 py-10 text-center text-xs text-slate-500">
-        <p>© {{ date('Y') }} GSHotel Netherlands. Curated 4-5 star luxury hospitality.</p>
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>© {{ date('Y') }} Gogan Space (GSHotel) Netherlands. Curated 4-5 star luxury hospitality.</p>
+            <p class="text-[11px] text-slate-400">Independent demonstration project, not affiliated with featured hotels. Contact / Copyright: <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-600 dark:text-amber-400 underline hover:text-amber-500">andrei.gogan9@gmail.com</a></p>
+        </div>
     </footer>
 
     <!-- Reservation Modal Component -->
