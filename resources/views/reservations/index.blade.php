@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark scroll-smooth" style="color-scheme: dark;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reserved Sanctuaries - GSHotel Netherlands</title>
-    <meta name="description" content="View your reserved luxury 4-5 star hotels and submitted guest information with GSHotel.">
+    <title>Reserved Sanctuaries - Gogan Space Netherlands</title>
+    <meta name="description" content="View your reserved luxury 4-5 star hotels and submitted guest information with Gogan Space.">
 
     <!-- Favicon / URL Tab Logo -->
     <link rel="icon" type="image/png" href="{{ asset('images/gs_logo.png') }}">
@@ -26,13 +26,14 @@
             font-family: 'Playfair Display', serif;
         }
         .bg-serene {
-            background-color: #faf8f5;
-            background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
-                              radial-gradient(at 100% 100%, rgba(15, 41, 34, 0.05) 0px, transparent 50%);
+            background-color: #020617;
+            background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.07) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(15, 41, 34, 0.06) 0px, transparent 50%),
+                              radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.95) 0px, transparent 80%);
         }
     </style>
 </head>
-<body class="bg-serene text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen">
+<body class="bg-serene text-slate-100 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen">
 
     <!-- Top Luxury Navigation -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-amber-500/10 dark:bg-slate-900/90 dark:border-slate-800">

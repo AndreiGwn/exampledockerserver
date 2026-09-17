@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark scroll-smooth" style="color-scheme: dark;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GSHotel - Curated 4 & 5 Star Luxury Sanctuaries in the Netherlands</title>
-    <meta name="description" content="Discover peaceful, high-end 4 and 5-star hotels and wellness resorts in the Netherlands. Reserve your serene stay instantly with GSHotel.">
+    <title>Gogan Space - Curated 4 & 5 Star Luxury Sanctuaries in the Netherlands</title>
+    <meta name="description" content="Discover peaceful, high-end 4 and 5-star hotels and wellness resorts in the Netherlands. Reserve your serene stay instantly with Gogan Space.">
 
     <!-- Favicon / URL Tab Logo -->
     <link rel="icon" type="image/png" href="{{ asset('images/gs_logo.png') }}">
@@ -26,16 +26,17 @@
             font-family: 'Playfair Display', serif;
         }
         .hero-luxury {
-            background-color: #0b1713;
+            background-color: #070e0b;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.18) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.10) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.7) 0px, transparent 80%);
+                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.20) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.85) 0px, transparent 80%);
         }
         .bg-serene {
-            background-color: #faf8f5;
-            background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.05) 0px, transparent 50%),
-                              radial-gradient(at 100% 100%, rgba(15, 41, 34, 0.04) 0px, transparent 50%);
+            background-color: #020617;
+            background-image: radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.07) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(15, 41, 34, 0.06) 0px, transparent 50%),
+                              radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.95) 0px, transparent 80%);
         }
         .gold-glow {
             box-shadow: 0 0 50px -10px rgba(212, 175, 55, 0.35);
@@ -43,7 +44,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body x-data="gshotelApp()" x-init="initApp()" class="bg-serene text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen relative overflow-x-hidden">
+<body x-data="gshotelApp()" x-init="initApp()" class="bg-serene text-slate-100 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen relative overflow-x-hidden">
 
     <!-- ========================================================================= -->
     <!-- 1. FULLSCREEN WELCOME INTRO SCREEN WITH CHILL TRANSITION                  -->
