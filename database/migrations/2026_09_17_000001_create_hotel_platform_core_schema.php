@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         // 1. Run createscript.sql for core table creation if not already present
-        $createScriptPath = base_path('createscript.sql');
+        $createScriptPath = file_exists(base_path('createscript.sql')) 
+            ? base_path('createscript.sql') 
+            : database_path('createscript.sql');
+
         if (file_exists($createScriptPath)) {
             $sql = file_get_contents($createScriptPath);
             DB::unprepared($sql);
@@ -34,17 +37,18 @@ return new class extends Migration
         }
 
         // 2. Load and register all Stored Procedures from Stored Procedures directory
-        $spDirectory = base_path('Stored Procedures');
-        if (is_dir($spDirectory)) {
-            $files = glob($spDirectory.'/*.sql');
-            foreach ($files as $file) {
-                $spSql = file_get_contents($file);
-                // Remove DELIMITER keywords for PDO execution if needed
-                $cleanedSql = preg_replace('/DELIMITER\s+\/\/|DELIMITER\s+;/i', '', $spSql);
-                try {
-                    DB::unprepared($cleanedSql);
-                } catch (Throwable $e) {
-                    // Log or handle gracefully
+        $spDirectories = [base_path('Stored Procedures'), database_path('StoredProcedures'), database_path('Stored Procedures')];
+        foreach ($spDirectories as $dir) {
+            if (is_dir($dir)) {
+                $files = glob($dir.'/*.sql');
+                foreach ($files as $file) {
+                    $spSql = file_get_contents($file);
+                    $cleanedSql = preg_replace('/DELIMITER\s+\/\/|DELIMITER\s+;/i', '', $spSql);
+                    try {
+                        DB::unprepared($cleanedSql);
+                    } catch (Throwable $e) {
+                        // Stored procedure already created or warning
+                    }
                 }
             }
         }
