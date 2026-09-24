@@ -1,43 +1,43 @@
 <div x-data="gshotelMusicPlayer()" x-init="initAudio()" class="inline-flex items-center">
     <!-- Header Sound Controller with Purrple Cat - Equinox Title -->
-    <div class="flex items-center gap-2 sm:gap-2.5 bg-slate-900/95 px-3 py-1.5 rounded-full border border-amber-500/30 shadow-md backdrop-blur-md transition-all hover:border-amber-500/50">
+    <div class="flex items-center gap-1.5 sm:gap-2.5 bg-slate-900/95 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-amber-500/30 shadow-md backdrop-blur-md transition-all hover:border-amber-500/50">
         
         <!-- Play / Pause Button -->
         <button type="button" 
                 @click="togglePlay()" 
-                class="w-7 h-7 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 flex-shrink-0" 
+                class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 flex-shrink-0" 
                 :title="isPlaying ? 'Pause: Purrple Cat - Equinox' : 'Play: Purrple Cat - Equinox'">
             <template x-if="!isPlaying">
-                <svg class="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                 </svg>
             </template>
             <template x-if="isPlaying">
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                 </svg>
             </template>
         </button>
 
         <!-- Track Title & Soundwave Indicator -->
-        <div class="flex items-center gap-1.5 cursor-pointer select-none" @click="togglePlay()" title="Purrple Cat - Equinox">
-            <span class="text-[11px] sm:text-xs font-medium text-slate-200 whitespace-nowrap">
-                Purrple Cat - <span class="text-amber-400 font-semibold">Equinox</span>
+        <div class="flex items-center gap-1 sm:gap-1.5 cursor-pointer select-none max-w-[100px] xs:max-w-[140px] sm:max-w-none truncate" @click="togglePlay()" title="Purrple Cat - Equinox">
+            <span class="text-[10px] sm:text-xs font-medium text-slate-200 truncate">
+                <span class="hidden xs:inline">Purrple Cat - </span><span class="text-amber-400 font-semibold">Equinox</span>
             </span>
-            <div class="hidden sm:flex items-center gap-0.5 h-3 px-0.5">
+            <div class="hidden md:flex items-center gap-0.5 h-3 px-0.5 flex-shrink-0">
                 <span class="w-0.5 bg-amber-500 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-3 animate-pulse' : 'h-1 opacity-30'"></span>
                 <span class="w-0.5 bg-amber-400 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-2 animate-bounce' : 'h-1 opacity-30'" style="animation-delay: 150ms"></span>
                 <span class="w-0.5 bg-amber-600 rounded-full transition-all duration-200" :class="isPlaying && !isMuted ? 'h-2.5 animate-pulse' : 'h-1 opacity-30'" style="animation-delay: 300ms"></span>
             </div>
         </div>
 
-        <div class="h-3 w-px bg-slate-700 mx-0.5"></div>
+        <div class="h-3 w-px bg-slate-700/80 mx-0.5 flex-shrink-0"></div>
 
         <!-- Volume Icon & Slider -->
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
             <button type="button" 
                     @click="toggleMute()" 
-                    class="text-slate-400 hover:text-white transition flex items-center justify-center flex-shrink-0" 
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 hover:text-white transition flex items-center justify-center flex-shrink-0" 
                     :title="isMuted ? 'Unmute' : 'Mute'">
                 <template x-if="!isMuted && volume > 0">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,14 +52,14 @@
                 </template>
             </button>
 
-            <!-- Minimal Volume Slider -->
+            <!-- Minimal Volume Slider (visible on sm+ screens) -->
             <input type="range" 
                    min="0" 
                    max="1" 
                    step="0.05" 
                    x-model="volume" 
                    @input="updateVolume()" 
-                   class="w-12 sm:w-16 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500" 
+                   class="hidden sm:block w-12 sm:w-16 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500" 
                    title="Volume">
         </div>
 

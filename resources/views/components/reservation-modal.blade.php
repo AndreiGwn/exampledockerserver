@@ -17,8 +17,8 @@
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"></div>
 
-    <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-        <div class="relative transform overflow-hidden rounded-3xl bg-white dark:bg-slate-900 text-left shadow-2xl border border-amber-500/20 transition-all sm:my-8 sm:w-full sm:max-w-xl p-6 sm:p-8"
+    <div class="flex min-h-full items-center justify-center p-3 sm:p-4 text-center">
+        <div class="relative transform overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-900 text-left shadow-2xl border border-amber-500/30 transition-all my-auto w-full max-w-lg max-h-[92vh] overflow-y-auto p-4 sm:p-7 text-white"
              x-show="isOpen"
              x-transition:enter="ease-out duration-300"
              x-transition:enter-start="opacity-0 translate-y-4 sm:scale-95"
@@ -28,7 +28,7 @@
              x-transition:leave-end="opacity-0 translate-y-4 sm:scale-95">
 
             <!-- Close Button -->
-            <button type="button" @click="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <button type="button" @click="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-slate-800 transition z-10">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -37,88 +37,88 @@
             <!-- State 1: Thank you message & Reservation Form -->
             <div x-show="!isSuccess">
                 <!-- Warm Hospitality Header -->
-                <div class="text-center mb-6">
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 mb-3 shadow-inner">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center mb-4 sm:mb-6 pr-6">
+                    <div class="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/10 text-amber-400 mb-2 sm:mb-3 shadow-inner">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+                    <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white">
                         Thank you for reserving
                     </h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-md mx-auto">
+                    <p class="text-xs text-slate-400 mt-1 max-w-md mx-auto">
                         Please provide your contact details below so our concierge can arrange your serene luxury experience at GSHotel.
                     </p>
                 </div>
 
                 <!-- Selected Hotel Preview Banner -->
-                <div class="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 mb-6">
-                    <img :src="hotelData.image_url" :alt="hotelData.name" class="w-16 h-16 rounded-xl object-cover shadow-sm">
+                <div class="flex items-center gap-3 sm:gap-4 p-3 rounded-2xl bg-slate-800/60 border border-slate-800 mb-4 sm:mb-6">
+                    <img :src="hotelData.image_url" :alt="hotelData.name" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shadow-sm shrink-0">
                     <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-1.5 mb-1">
-                            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-300" x-text="(hotelData.star_rating || 5) + ' ★ Luxury'"></span>
+                        <div class="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+                            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300" x-text="(hotelData.star_rating || 5) + ' ★ Luxury'"></span>
                             <span class="text-xs text-slate-400" x-text="hotelData.city"></span>
                         </div>
-                        <h4 class="text-sm font-bold text-slate-900 dark:text-white truncate" x-text="hotelData.name"></h4>
-                        <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mt-0.5">
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate" x-text="hotelData.name"></h4>
+                        <div class="text-xs font-bold text-amber-400 mt-0.5">
                             €<span x-text="hotelData.price_per_night"></span> <span class="text-[10px] text-slate-400 font-normal">/ night</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Error Alert if Any -->
-                <div x-show="errorMessage" class="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-semibold" x-text="errorMessage"></div>
+                <div x-show="errorMessage" class="mb-4 p-3 rounded-xl bg-rose-950/40 text-rose-400 text-xs font-semibold" x-text="errorMessage"></div>
 
                 <!-- Form -->
-                <form @submit.prevent="submitReservation()" class="space-y-4">
+                <form @submit.prevent="submitReservation()" class="space-y-3 sm:space-y-4">
                     <input type="hidden" name="hotel_id" :value="hotelData.id">
                     <input type="hidden" name="room_id" :value="hotelData.room_id || ''">
 
                     <!-- Guest Name -->
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                        <label class="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
                             Your Full Name <span class="text-rose-500">*</span>
                         </label>
-                        <input type="text" x-model="form.guest_name" required placeholder="e.g. Eleanor Vance" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition">
+                        <input type="text" x-model="form.guest_name" required placeholder="e.g. Eleanor Vance" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-amber-500 outline-none text-slate-100">
                     </div>
 
                     <!-- Email & Phone Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                            <label class="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
                                 Mail Address <span class="text-rose-500">*</span>
                             </label>
-                            <input type="email" x-model="form.guest_email" required placeholder="eleanor@example.com" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition">
+                            <input type="email" x-model="form.guest_email" required placeholder="eleanor@example.com" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-amber-500 outline-none text-slate-100">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                            <label class="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
                                 Phone Number <span class="text-rose-500">*</span>
                             </label>
-                            <input type="tel" x-model="form.guest_phone" required placeholder="+31 6 1234 5678" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition">
+                            <input type="tel" x-model="form.guest_phone" required placeholder="+31 6 1234 5678" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-amber-500 outline-none text-slate-100">
                         </div>
                     </div>
 
                     <!-- Home Address (Optional) -->
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                        <label class="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
                             Home Address <span class="text-slate-400 font-normal lowercase">(optional)</span>
                         </label>
-                        <input type="text" x-model="form.guest_address" placeholder="e.g. Keizersgracht 100, 1015 AA Amsterdam" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition">
+                        <input type="text" x-model="form.guest_address" placeholder="e.g. Keizersgracht 100, Amsterdam" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-amber-500 outline-none text-slate-100">
                     </div>
 
                     <!-- Dates & Guests -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                         <div>
-                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Check-in Date</label>
-                            <input type="date" x-model="form.check_in" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1">Check-in Date</label>
+                            <input type="date" x-model="form.check_in" class="w-full px-3 py-2 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 outline-none text-slate-100">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Check-out Date</label>
-                            <input type="date" x-model="form.check_out" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1">Check-out Date</label>
+                            <input type="date" x-model="form.check_out" class="w-full px-3 py-2 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 outline-none text-slate-100">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Guests</label>
-                            <select x-model="form.guests_count" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none">
+                            <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 mb-1">Guests</label>
+                            <select x-model="form.guests_count" class="w-full px-3 py-2 rounded-xl text-base sm:text-xs bg-slate-800 border border-slate-700 outline-none text-slate-100">
                                 <option value="1">1 Guest</option>
                                 <option value="2">2 Guests</option>
                                 <option value="3">3 Guests</option>
@@ -128,8 +128,8 @@
                     </div>
 
                     <!-- Submit / Send Button -->
-                    <div class="pt-3">
-                        <button type="submit" :disabled="isSubmitting" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-black text-sm tracking-wider uppercase shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
+                    <div class="pt-2 sm:pt-3">
+                        <button type="submit" :disabled="isSubmitting" class="w-full py-3 sm:py-3.5 px-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-amber-500/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
                             <span x-show="!isSubmitting">Send Reservation</span>
                             <span x-show="isSubmitting" class="flex items-center gap-2">
                                 <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
@@ -144,26 +144,26 @@
             </div>
 
             <!-- State 2: Success Confirmation UI -->
-            <div x-show="isSuccess" class="text-center py-4 space-y-6">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mx-auto animate-bounce">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div x-show="isSuccess" class="text-center py-3 sm:py-4 space-y-4 sm:space-y-6">
+                <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500/10 text-emerald-400 mx-auto animate-bounce">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                     </svg>
                 </div>
 
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Reservation Confirmed</span>
-                    <h3 class="text-2xl font-black text-slate-900 dark:text-white mt-1">Thank you for reserving!</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 max-w-md mx-auto">
-                        Your reservation for <strong class="text-slate-800 dark:text-slate-200" x-text="hotelData.name"></strong> has been secured with reference code:
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-400">Reservation Confirmed</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-white mt-1">Thank you for reserving!</h3>
+                    <p class="text-xs text-slate-400 mt-1.5 max-w-md mx-auto">
+                        Your reservation for <strong class="text-slate-200" x-text="hotelData.name"></strong> has been secured with reference code:
                     </p>
-                    <div class="inline-block mt-3 px-5 py-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 font-mono font-black text-lg tracking-widest shadow-inner" x-text="confirmedCode"></div>
+                    <div class="inline-block mt-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-black text-base sm:text-lg tracking-widest shadow-inner" x-text="confirmedCode"></div>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-left text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-800 text-left text-xs space-y-1.5 text-slate-300">
                     <div class="flex justify-between">
                         <span class="text-slate-400">Guest Name:</span>
-                        <strong class="text-slate-800 dark:text-white" x-text="form.guest_name"></strong>
+                        <strong class="text-white" x-text="form.guest_name"></strong>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-slate-400">Mail Address:</span>
@@ -176,17 +176,15 @@
                 </div>
 
                 <!-- Navigation Actions (SPA Tab Switch to preserve continuous audio) -->
-                <div class="space-y-3 pt-2">
-                    <button type="button" @click="goToReserved()" class="w-full py-3.5 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-amber-600 dark:hover:bg-amber-700 font-black text-xs uppercase tracking-wider shadow-lg transition text-center flex items-center justify-center gap-2">
+                <div class="space-y-2.5 sm:space-y-3 pt-2">
+                    <button type="button" @click="goToReserved()" class="w-full py-3 sm:py-3.5 px-6 rounded-xl sm:rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-wider shadow-lg transition text-center flex items-center justify-center gap-2">
                         <span>Go to "Reserved" Tab to View Your Stay</span>
                         <span>→</span>
                     </button>
-                    <button type="button" @click="closeModal()" class="block w-full text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 py-2">
+                    <button type="button" @click="closeModal()" class="block w-full text-xs text-slate-400 hover:text-white py-1.5">
                         Close & Continue Exploring
                     </button>
                 </div>
-            </div>
-
         </div>
     </div>
 </div>
