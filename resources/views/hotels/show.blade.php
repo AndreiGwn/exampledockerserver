@@ -13,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Marcellus&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,18 +40,26 @@
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
                 
-                <!-- Brand Logo -->
+                <!-- Cool Brand Logo -->
                 <a href="{{ route('hotels.index') }}" class="flex items-center gap-2 sm:gap-3.5 group shrink-0">
-                    <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-md shadow-amber-600/20 group-hover:scale-105 transition-transform duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg shadow-amber-500/20 group-hover:scale-105 group-hover:border-amber-400/80 transition-all duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
                         <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-lg sm:rounded-xl">
                     </div>
-                    <div class="flex flex-col justify-center">
-                        <span class="text-base sm:text-2xl font-bold tracking-tight font-serif text-white group-hover:text-amber-400 transition-colors leading-tight">
-                            Gogan Space
-                        </span>
-                        <span class="hidden xs:block text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.22em] text-amber-400 leading-none mt-0.5 sm:mt-1">
-                            Hotels &bull; Netherlands
-                        </span>
+                    <div class="flex flex-col justify-center leading-none">
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <span class="font-cinzel text-base sm:text-2xl font-black tracking-wider text-white logo-text-shimmer drop-shadow-sm uppercase">
+                                Gogan Space
+                            </span>
+                            <span class="font-cinzel-decorative text-[10px] sm:text-xs font-bold tracking-widest gold-text-glow px-1.5 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 shadow-sm shadow-amber-500/15 uppercase">
+                                Hotels
+                            </span>
+                        </div>
+                        <div class="hidden xs:flex items-center gap-1.5 mt-1">
+                            <span class="w-1 h-1 rounded-full bg-amber-400/80"></span>
+                            <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.24em] text-slate-400 group-hover:text-amber-300/90 transition-colors">
+                                Netherlands &bull; Luxury Sanctuaries
+                            </span>
+                        </div>
                     </div>
                 </a>
 
@@ -265,9 +273,19 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900/80 border-t border-slate-800 py-10 text-center text-xs text-slate-500 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p>© {{ date('Y') }} Gogan Space (GSHotel) Netherlands. Curated 4-5 star luxury hospitality.</p>
-            <p class="text-[11px] text-slate-400">Independent demonstration project, not affiliated with featured hotels. Contact / Copyright: <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-400 underline hover:text-amber-300">andrei.gogan9@gmail.com</a></p>
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <div class="flex items-center justify-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg overflow-hidden border border-amber-500/30 inline-block align-middle">
+                    <img src="{{ asset('images/gs_logo.png') }}" alt="GS Logo" class="w-full h-full object-contain">
+                </div>
+                <div class="inline-flex items-center gap-2">
+                    <span class="font-cinzel text-white font-black tracking-wider text-base uppercase">Gogan Space</span>
+                    <span class="font-cinzel-decorative text-sm font-bold tracking-widest gold-text-glow uppercase">Hotels</span>
+                    <span class="text-xs text-slate-400 font-semibold">&bull; Netherlands</span>
+                </div>
+            </div>
+            <p>Curated 4-5 star luxury hospitality sanctuaries across the Netherlands.</p>
+            <p class="text-[11px] text-slate-400">© {{ date('Y') }} Gogan Space. Independent demonstration project, not affiliated with featured hotels. Contact / Copyright: <a href="mailto:andrei.gogan9@gmail.com" class="text-amber-400 underline hover:text-amber-300">andrei.gogan9@gmail.com</a></p>
         </div>
     </footer>
 
