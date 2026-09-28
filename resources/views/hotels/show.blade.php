@@ -63,36 +63,36 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Tabs (hidden on mobile, visible on md+) -->
-                <nav class="hidden md:flex items-center gap-1.5 sm:gap-3">
-                    <a href="{{ route('hotels.index') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-amber-400 font-medium transition flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                        </svg>
-                        <span>All Hotels</span>
-                    </a>
+                <!-- Navigation & Controls Container (Desktop Tabs + Single Music Player + Mobile Hamburger) -->
+                <div class="flex items-center gap-1.5 xs:gap-2.5 sm:gap-3 shrink-0">
+                    
+                    <!-- Desktop Navigation Tabs (hidden on mobile, visible on md+) -->
+                    <nav class="hidden md:flex items-center gap-1.5 sm:gap-3">
+                        <a href="{{ route('hotels.index') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-amber-400 font-medium transition flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                            </svg>
+                            <span>All Hotels</span>
+                        </a>
 
-                    <!-- Reserved Tab -->
-                    <a href="{{ route('reservations.index') }}" class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm shadow-md transition hover:scale-[1.02]">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                        </svg>
-                        <span>Reserved</span>
-                    </a>
+                        <!-- Reserved Tab -->
+                        <a href="{{ route('reservations.index') }}" class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm shadow-md transition hover:scale-[1.02]">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                            <span>Reserved</span>
+                        </a>
+                    </nav>
 
-                    <!-- Minimal Sound Controller in Header (Top-Right) -->
+                    <!-- Single Ambient Music Player Widget (Desktop full pill, Mobile compact) -->
                     <div class="shrink-0">
                         <x-music-player />
                     </div>
-                </nav>
 
-                <!-- Mobile Action Bar: Quick Audio + Hamburger Button (md:hidden) -->
-                <div class="flex md:hidden items-center gap-1.5 xs:gap-2 shrink-0">
-                    <x-music-player />
-
+                    <!-- Mobile Hamburger Menu Toggle Button (md:hidden) -->
                     <button type="button" 
                             @click="mobileMenuOpen = !mobileMenuOpen" 
-                            class="p-2 xs:p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-md flex items-center justify-center"
+                            class="md:hidden p-2 xs:p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-md flex items-center justify-center shrink-0"
                             aria-label="Toggle navigation menu">
                         <svg x-show="!mobileMenuOpen" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>

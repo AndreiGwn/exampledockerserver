@@ -159,52 +159,49 @@
                     </div>
                 </div>
 
-                <!-- Desktop Navigation Tabs (hidden on mobile, visible on md+) -->
-                <nav class="hidden md:flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                <!-- Navigation & Controls Container (Desktop Tabs + Single Music Player + Mobile Hamburger) -->
+                <div class="flex items-center gap-1.5 xs:gap-2.5 sm:gap-3 shrink-0">
                     
-                    <!-- Welcome Screen Replay -->
-                    <button type="button" @click="showWelcome = true" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition">
-                        <span>Intro</span>
-                    </button>
+                    <!-- Desktop Navigation Tabs (hidden on mobile, visible on md+) -->
+                    <nav class="hidden md:flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                        <!-- Welcome Screen Replay -->
+                        <button type="button" @click="showWelcome = true" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition">
+                            <span>Intro</span>
+                        </button>
 
-                    <!-- Explore Hotels Tab -->
-                    <button type="button" 
-                            @click="switchTab('explore')" 
-                            :class="activeTab === 'explore' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'text-slate-300 hover:text-amber-400 font-medium'"
-                            class="px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 sm:gap-2 shrink-0">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                        <span>Explore Hotels</span>
-                    </button>
+                        <!-- Explore Hotels Tab -->
+                        <button type="button" 
+                                @click="switchTab('explore')" 
+                                :class="activeTab === 'explore' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'text-slate-300 hover:text-amber-400 font-medium'"
+                                class="px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 sm:gap-2 shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                            <span>Explore Hotels</span>
+                        </button>
 
-                    <!-- Reserved Tab (Dynamic Count Badge) -->
-                    <button type="button" 
-                            @click="switchTab('reserved')" 
-                            :class="activeTab === 'reserved' ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white font-black shadow-md shadow-amber-600/25' : 'bg-slate-800 hover:bg-slate-700 text-white font-bold'"
-                            class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-2xl text-xs sm:text-sm transition hover:scale-[1.02] active:scale-[0.98] shrink-0">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                        </svg>
-                        <span>Reserved</span>
-                        <span x-show="reservations.length > 0" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-amber-500 text-white text-[9px] sm:text-[11px] font-black flex items-center justify-center shadow-inner" x-text="reservations.length"></span>
-                    </button>
+                        <!-- Reserved Tab (Dynamic Count Badge) -->
+                        <button type="button" 
+                                @click="switchTab('reserved')" 
+                                :class="activeTab === 'reserved' ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white font-black shadow-md shadow-amber-600/25' : 'bg-slate-800 hover:bg-slate-700 text-white font-bold'"
+                                class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-lg sm:rounded-2xl text-xs sm:text-sm transition hover:scale-[1.02] active:scale-[0.98] shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                            <span>Reserved</span>
+                            <span x-show="reservations.length > 0" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-amber-500 text-white text-[9px] sm:text-[11px] font-black flex items-center justify-center shadow-inner" x-text="reservations.length"></span>
+                        </button>
+                    </nav>
 
-                    <!-- Minimal Sound Controller in Header (Top-Right) -->
+                    <!-- Single Ambient Music Player Widget (Desktop full pill, Mobile compact) -->
                     <div class="shrink-0">
                         <x-music-player />
                     </div>
-                </nav>
 
-                <!-- Mobile Action Bar: Compact Music Player + Hamburger Button (md:hidden) -->
-                <div class="flex md:hidden items-center gap-1.5 xs:gap-2 shrink-0">
-                    <!-- Quick Ambient Audio Button -->
-                    <x-music-player />
-
-                    <!-- Hamburger Menu Toggle Button -->
+                    <!-- Mobile Hamburger Menu Toggle Button (md:hidden) -->
                     <button type="button" 
                             @click="mobileMenuOpen = !mobileMenuOpen" 
-                            class="relative p-2 xs:p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-md flex items-center justify-center"
+                            class="md:hidden relative p-2 xs:p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-md flex items-center justify-center shrink-0"
                             aria-label="Toggle navigation menu"
                             :aria-expanded="mobileMenuOpen.toString()">
                         

@@ -92,10 +92,17 @@ function gshotelMusicPlayer() {
                 this.volume = parseFloat(savedVol);
             }
 
-            this.audioElement = new Audio(this.primaryTrackUrl);
-            this.audioElement.loop = true;
+            if (!window.__gshotel_audio_instance) {
+                window.__gshotel_audio_instance = new Audio(this.primaryTrackUrl);
+                window.__gshotel_audio_instance.loop = true;
+            }
+            this.audioElement = window.__gshotel_audio_instance;
             this.audioElement.volume = this.isMuted ? 0 : this.volume;
             this.audioElement.muted = this.isMuted;
+            this.isPlaying = !this.audioElement.paused && this.audioElement.currentTime > 0;
+
+            this.audioElement.onplay = () => { this.isPlaying = true; };
+            this.audioElement.onpause = () => { this.isPlaying = false; };
 
             this.audioElement.addEventListener('error', () => {
                 if (this.audioElement.src !== window.location.origin + this.fallbackTrackUrl) {
@@ -109,11 +116,14 @@ function gshotelMusicPlayer() {
             });
 
             // Listen for external play trigger (e.g. from welcome screen button)
-            window.addEventListener('start-gshotel-music', () => {
-                if (!this.isPlaying) {
-                    this.playAudio();
-                }
-            });
+            if (!window.__gshotel_music_listener_attached) {
+                window.__gshotel_music_listener_attached = true;
+                window.addEventListener('start-gshotel-music', () => {
+                    if (this.audioElement && this.audioElement.paused) {
+                        this.playAudio();
+                    }
+                });
+            }
         },
 
         playAudio() {
