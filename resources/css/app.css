@@ -40,3 +40,21 @@
     background-position: right center;
 }
 
+/* Mobile Responsiveness & Viewport Protection */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, svg {
+    max-width: 100%;
+}

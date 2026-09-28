@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark scroll-smooth" style="color-scheme: dark;">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark scroll-smooth overflow-x-hidden w-full max-w-full" style="color-scheme: dark;">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     <title>Reserved Sanctuaries - Gogan Space Netherlands</title>
     <meta name="description" content="View your reserved luxury 4-5 star hotels and submitted guest information with Gogan Space.">
 
@@ -33,27 +33,27 @@
         }
     </style>
 </head>
-<body class="bg-serene text-slate-100 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen">
+<body x-data="{ mobileMenuOpen: false }" class="bg-serene text-slate-100 antialiased dark:bg-slate-950 dark:text-slate-100 flex flex-col min-h-screen relative w-full max-w-full overflow-x-hidden">
 
     <!-- Top Luxury Navigation -->
-    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-amber-500/15 transition-all">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-amber-500/15 transition-all w-full max-w-full overflow-hidden">
+        <div class="max-w-7xl mx-auto px-2.5 xs:px-3 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 xs:h-16 sm:h-20 gap-1 sm:gap-3">
                 <!-- Cool Brand Logo -->
-                <a href="{{ route('hotels.index') }}" class="flex items-center gap-2 sm:gap-3.5 group shrink-0">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg shadow-amber-500/20 group-hover:scale-105 group-hover:border-amber-400/80 transition-all duration-300 border border-amber-500/40 bg-slate-950 p-1 flex items-center justify-center flex-shrink-0">
-                        <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-lg sm:rounded-xl">
+                <a href="{{ route('hotels.index') }}" class="flex items-center gap-1.5 xs:gap-2 sm:gap-3.5 group shrink-0 min-w-0">
+                    <div class="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-2xl overflow-hidden shadow-lg shadow-amber-500/20 group-hover:scale-105 group-hover:border-amber-400/80 transition-all duration-300 border border-amber-500/40 bg-slate-950 p-0.5 sm:p-1 flex items-center justify-center shrink-0">
+                        <img src="{{ asset('images/gs_logo.png') }}" alt="Gogan Space GS Logo" class="w-full h-full object-contain rounded-md sm:rounded-xl">
                     </div>
-                    <div class="flex flex-col justify-center leading-none">
-                        <div class="flex items-center gap-1.5 sm:gap-2">
-                            <span class="font-cinzel text-base sm:text-2xl font-black tracking-wider text-white logo-text-shimmer drop-shadow-sm uppercase">
+                    <div class="flex flex-col justify-center leading-none min-w-0">
+                        <div class="flex items-center gap-1 sm:gap-2">
+                            <span class="font-cinzel text-xs xs:text-sm sm:text-2xl font-black tracking-wider text-white logo-text-shimmer drop-shadow-sm uppercase truncate">
                                 Gogan Space
                             </span>
-                            <span class="font-cinzel-decorative text-[10px] sm:text-xs font-bold tracking-widest gold-text-glow px-1.5 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/30 shadow-sm shadow-amber-500/15 uppercase">
+                            <span class="font-cinzel-decorative text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-widest gold-text-glow px-1 sm:px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 shadow-sm uppercase shrink-0">
                                 Hotels
                             </span>
                         </div>
-                        <div class="hidden xs:flex items-center gap-1.5 mt-1">
+                        <div class="hidden md:flex items-center gap-1.5 mt-1">
                             <span class="w-1 h-1 rounded-full bg-amber-400/80"></span>
                             <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.24em] text-slate-400 group-hover:text-amber-300/90 transition-colors">
                                 Netherlands &bull; Luxury Sanctuaries
@@ -62,14 +62,13 @@
                     </div>
                 </a>
 
-                <!-- Navigation Tabs -->
-                <nav class="flex items-center gap-1.5 sm:gap-3">
+                <!-- Desktop Navigation Tabs (hidden on mobile, visible on md+) -->
+                <nav class="hidden md:flex items-center gap-1.5 sm:gap-3">
                     <a href="{{ route('hotels.index') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-amber-400 font-medium transition flex items-center gap-1.5">
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                         </svg>
-                        <span class="hidden sm:inline">Explore Hotels</span>
-                        <span class="sm:hidden">Explore</span>
+                        <span>Explore Hotels</span>
                     </a>
 
                     <!-- Reserved Tab (Active) -->
@@ -77,7 +76,7 @@
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                         </svg>
-                        <span class="hidden xs:inline">Reserved</span>
+                        <span>Reserved</span>
                         @if($reservations->count() > 0)
                             <span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white text-amber-700 text-[10px] sm:text-[11px] font-black flex items-center justify-center shadow-inner">
                                 {{ $reservations->count() }}
@@ -90,6 +89,91 @@
                         <x-music-player />
                     </div>
                 </nav>
+
+                <!-- Mobile Action Bar: Quick Audio + Hamburger Button (md:hidden) -->
+                <div class="flex md:hidden items-center gap-1.5 xs:gap-2 shrink-0">
+                    <x-music-player />
+
+                    <button type="button" 
+                            @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="relative p-2 xs:p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-amber-500/30 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-md flex items-center justify-center"
+                            aria-label="Toggle navigation menu">
+                        @if($reservations->count() > 0)
+                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full animate-ping"></span>
+                            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-slate-900"></span>
+                        @endif
+
+                        <svg x-show="!mobileMenuOpen" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg x-show="mobileMenuOpen" class="w-5 h-5 text-amber-300 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-cloak>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-250 transform origin-top"
+             x-transition:enter-start="opacity-0 -translate-y-3 scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+             x-transition:leave="transition ease-in duration-200 transform origin-top"
+             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+             x-transition:leave-end="opacity-0 -translate-y-3 scale-95"
+             @click.away="mobileMenuOpen = false"
+             class="md:hidden border-t border-amber-500/20 bg-slate-950/98 backdrop-blur-2xl px-3.5 py-4 space-y-2.5 shadow-2xl max-w-full overflow-hidden"
+             x-cloak>
+            
+            <a href="{{ route('hotels.index') }}" 
+               class="w-full flex items-center justify-between p-3 rounded-2xl border border-slate-800 bg-slate-900/90 text-slate-200 hover:bg-slate-800/90 hover:border-amber-500/30 transition-all group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-amber-500/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="text-sm font-bold text-white group-hover:text-amber-300 transition-colors truncate">Explore Sanctuaries</div>
+                        <div class="text-[11px] text-slate-400 truncate">Browse 4 & 5-star Dutch luxury stays</div>
+                    </div>
+                </div>
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+            <a href="{{ route('reservations.index') }}" 
+               class="w-full flex items-center justify-between p-3 rounded-2xl border border-amber-500/40 bg-gradient-to-r from-amber-600/30 to-amber-700/30 text-amber-300 shadow-inner transition-all group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-amber-500/30">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-bold text-white group-hover:text-amber-300 transition-colors truncate">Reserved Sanctuaries</span>
+                            @if($reservations->count() > 0)
+                                <span class="px-2 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-black shrink-0">{{ $reservations->count() }}</span>
+                            @endif
+                        </div>
+                        <div class="text-[11px] text-slate-400 truncate">Lookup & manage confirmed bookings</div>
+                    </div>
+                </div>
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+            <div class="pt-2 border-t border-slate-800/80 text-center">
+                <a href="mailto:andrei.gogan9@gmail.com" class="text-[11px] text-amber-400/90 hover:text-amber-300 font-medium inline-flex items-center justify-center gap-1.5 py-1 transition-colors">
+                    <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span class="truncate">Concierge: andrei.gogan9@gmail.com</span>
+                </a>
             </div>
         </div>
     </header>
